@@ -34,7 +34,10 @@ function distText(p){
  const label=ref?'片区参考直线约 ':p.precision==='address'?'地址参考直线约 ':'直线约 ';
  return label+(v<1?(Math.round(v*1000/10)*10)+' 米':v.toFixed(v<20?1:0)+' 公里');
 }
-function textPlace(p){return norm([p.name,p.address,p.district,...p.videos.map(v=>v.title)].join(' '));}
+function textPlace(p){
+ const titles=p.videos.filter(v=>!videoCaution(v)&&s.links.get(v.bvid)?.size===1&&(v.namedPlaces?.length||0)<=1).map(v=>v.title);
+ return norm([p.name,p.address,p.district,...titles].join(' '));
+}
 function videoCaution(video) {
  if(video.stance==='historical_closure') return '原片提到停业，当前状态请复核';
  if(video.stance==='negative') return '作者在该期表达保留意见';
@@ -45,8 +48,7 @@ function videoCaution(video) {
 function rankPlace(p,words){
  const neutral=p.videos.filter(v=>!videoCaution(v));const mixed=p.videos.some(v=>v.stance==='mixed');
  const caution=p.videos.length>0&&!neutral.length&&!mixed;
- const allowed=norm([p.name,p.district,p.address,...neutral.map(v=>v.title)].join(' '));
- const hits=[...new Set(words)].filter(w=>allowed.includes(w));const v=distance(p);
+ const hits=[...new Set(words)].filter(w=>p._text.includes(w));const v=distance(p);
  const geo=Number.isFinite(v)&&precise(p)&&s.manual?.precision!=='area'?(v<=1?5:v<=3?3:v<=8?2:v<=15?1:0):0;
  const verified=hasPoint(p)?({poi:3,address:2,area:1}[p.precision]||0):0;
  const score=4*Math.min(2,hits.length)+geo+verified+Number(neutral.length>0)-(caution?8:0);
@@ -78,7 +80,8 @@ async function changeCity(id){
  try{
  const response=await fetch('./data/'+id+'.json');if(!response.ok)throw new Error('HTTP '+response.status);const d=await response.json();if(n!==s.cityLoad)return;if(!Array.isArray(d.places)||!Array.isArray(d.catalog))throw new Error('目录格式不正确');s.data=d;
  const catalogById=new Map(d.catalog.map(video=>[video.bvid,video]));
- s.links=new Map();d.places.forEach((p,i)=>{p._i=i;p.videos=(p.videos||[]).map(video=>catalogById.get(video.bvid)||video);p._text=textPlace(p);for(const v of p.videos){if(!s.links.has(v.bvid))s.links.set(v.bvid,new Set());s.links.get(v.bvid).add(p);}});
+ s.links=new Map();d.places.forEach((p,i)=>{p._i=i;p.videos=(p.videos||[]).map(video=>catalogById.get(video.bvid)||video);for(const v of p.videos){if(!s.links.has(v.bvid))s.links.set(v.bvid,new Set());s.links.get(v.bvid).add(p);}});
+ for(const p of d.places)p._text=textPlace(p);
  for(const p of d.places.filter(hasPoint).sort((a,b)=>Number(!precise(a))-Number(!precise(b))||a.name.localeCompare(b.name,'zh-CN')))$('origin').add(new Option(p.name+' · '+(precision[p.precision]||'参考点'),String(p._i)));
  const creator=d.up?.name||'作者';$('channel').replaceChildren(tag('span','','探店 UP 主'),link(creator+' ↗',d.up?.url));for(const item of [...new Set(d.places.map(p=>p.district).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'zh-CN')))$('district').add(new Option(item,item));
  const cv=d.coverage||{},day=cv.snapshotDate||cv.asOf;
@@ -211,7 +214,11 @@ function locate(){
  if(!navigator.geolocation){s.locHint='当前浏览器不支持定位，可按城市或区域浏览。';$('location').textContent=s.locHint;return;}
  const token=++s.locToken;$('locate').disabled=true;$('location').textContent='正在请求设备位置…';navigator.geolocation.getCurrentPosition(pos=>{if(token!==s.locToken)return;s.manual=null;$('origin').value='';s.pos={lat:pos.coords.latitude,lon:pos.coords.longitude,accuracy:pos.coords.accuracy};s.locHint='';$('locate').disabled=false;$('locate').textContent='◎ 更新位置';s.sort='near';$('sort').value='near';s.sel=null;recompute();},error=>{if(token!==s.locToken)return;$('locate').disabled=false;s.locHint=error.code===1?'未获得定位权限，可手选本城出发点。':error.code===3?'定位超时，请重试或按区域浏览。':'未取得当前位置，可继续按区域浏览。';$('location').textContent=geoText();if(!origin()&&s.sort==='near'){s.sort='personal';$('sort').value='personal';recompute();}},{enableHighAccuracy:false,timeout:9500,maximumAge:120000});
 }
-document.querySelectorAll('[data-city]').forEach(b=>b.onclick=()=>changeCity(b.dataset.city));$('search').oninput=e=>{s.q=e.target.value;s.plimit=s.vlimit=12;recompute();};$('district').onchange=e=>{s.district=e.target.value;s.plimit=s.vlimit=12;recompute();};$('sort').onchange=e=>{if(e.target.value==='near'&&!origin()){e.target.value=s.sort;locate();return;}s.sort=e.target.value;s.sel=null;recompute();};
+document.querySelectorAll('[data-city]').forEach(b=>b.onclick=()=>{
+ const id=b.dataset.city,url=new URL(location.href);url.searchParams.set('city',id);
+ history.replaceState(null,'',url);changeCity(id);
+});
+$('search').oninput=e=>{s.q=e.target.value;s.plimit=s.vlimit=12;recompute();};$('district').onchange=e=>{s.district=e.target.value;s.plimit=s.vlimit=12;recompute();};$('sort').onchange=e=>{if(e.target.value==='near'&&!origin()){e.target.value=s.sort;locate();return;}s.sort=e.target.value;s.sel=null;recompute();};
 $('onlymap').onclick=()=>{s.mapped=!s.mapped;recompute();};$('onlyfav').onclick=()=>{s.fav=!s.fav;recompute();};$('moreplaces').onclick=()=>{s.plimit+=24;renderCards();};$('morevideos').onclick=()=>{s.vlimit+=24;renderFilms();};$('locate').onclick=locate;$('online').onclick=toggleStreet;$('zoomin').onclick=()=>zoom(.5);$('zoomout').onclick=()=>zoom(2);$('resetview').onclick=()=>{s.view=null;drawMap(true);};
 window.addEventListener('food-atlas:show-place',event=>{
  const d=event.detail;if(!d||!s.data||![s.city,regionName()].includes(d.city))return;
@@ -219,4 +226,4 @@ window.addEventListener('food-atlas:show-place',event=>{
  resetFilters();s.sel=p;recompute();choose(p,true);
 });
 $('origin').onchange=e=>selectOrigin(e.target.value===''?null:s.data?.places[Number(e.target.value)]);$('approx').onchange=e=>{s.approx=e.target.checked;recompute();};
-changeCity('wuhan');
+changeCity(new URLSearchParams(location.search).get('city')==='fuzhou'?'fuzhou':'wuhan');
