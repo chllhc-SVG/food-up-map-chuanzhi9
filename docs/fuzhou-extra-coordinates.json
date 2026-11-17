@@ -1,0 +1,424 @@
+[
+  {
+    "name": "福噜面馆",
+    "address": "元帅路32号小区东南侧",
+    "district": "鼓楼区",
+    "lat": 26.090017,
+    "lon": 119.289472,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=5f9b3bfa5c2875fa29fc48a8",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13280639.55,
+      "y": 2991659.91
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.09316028,
+      "lon": 119.3007168
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "公开地图有同名餐饮点，地址为小区相对方位。",
+    "bvids": [
+      "BV1wCjG6nEUH"
+    ],
+    "source": "https://www.bilibili.com/video/BV1wCjG6nEUH/"
+  },
+  {
+    "name": "内幸町拉面",
+    "address": "连江北路70号",
+    "district": "晋安区",
+    "lat": 26.098482,
+    "lon": 119.32574,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=8a4b223dacc9b6b1fadc8549",
+    "addressSource": "https://www.sina.cn/news/detail/4941868188829876.html",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13284697.39,
+      "y": 2992638.79
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.10110053,
+      "lon": 119.3371686
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "地图名为内幸町拉面（东二环泰禾店）。福州东二环二化车站后方的食客记录与此相符。",
+    "bvids": [
+      "BV1xQx265EoS"
+    ],
+    "source": "https://www.bilibili.com/video/BV1xQx265EoS/"
+  },
+  {
+    "name": "金山夜面馆",
+    "address": "建新镇洪湾北路219号",
+    "district": "仓山区",
+    "lat": 26.058871,
+    "lon": 119.241596,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=eb8e0025627f8ad4f02d8314",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13275315.17,
+      "y": 2987779.41
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.06167799,
+      "lon": 119.2528876
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "视频写明完整店名。地图同名点与其他名称仅为「夜面馆」的店可区分。",
+    "bvids": [
+      "BV1rMoLBHEwX"
+    ],
+    "source": "https://www.bilibili.com/video/BV1rMoLBHEwX/"
+  },
+  {
+    "name": "La Q tapa",
+    "address": "江滨西大道100号融侨中心二楼2018、三楼3012室",
+    "district": "台江区",
+    "lat": 26.062786,
+    "lon": 119.273198,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=5ddf090f506bdb15fb2213e8",
+    "addressSource": "https://us.trip.com/restaurant/china/fuzhou/detail/restaurant-37023840/",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13278824.04,
+      "y": 2988314.85
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.06602249,
+      "lon": 119.28440798
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "视频署名与福州西班牙菜商户匹配。携程旅行详情与地图同指融侨中心。",
+    "bvids": [
+      "BV1U85R63Egd"
+    ],
+    "source": "https://www.bilibili.com/video/BV1U85R63Egd/"
+  },
+  {
+    "name": "叁omakase",
+    "address": "宁化街道江滨西大道100号融侨中心一层902号",
+    "district": "台江区",
+    "lat": 26.06324,
+    "lon": 119.27237,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=20213e38944fa5bea6da39f9",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13278731.83,
+      "y": 2988370.44
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.06647354,
+      "lon": 119.28357965
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "地图全称为叁·Omakase，与视频中完整店名匹配。",
+    "bvids": [
+      "BV1nntP6pESi"
+    ],
+    "source": "https://www.bilibili.com/video/BV1nntP6pESi/"
+  },
+  {
+    "name": "KNOW KAFFE",
+    "address": "南园路52号",
+    "district": "台江区",
+    "lat": 26.051804,
+    "lon": 119.299017,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=c624e64724f3b591ae080f65",
+    "addressSource": "https://www.wingontravel.com/discovery/restaurant-136240137",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13281706.67,
+      "y": 2986936.37
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.05483732,
+      "lon": 119.3103028
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "作者署名与地图咖啡店完全一致，永安旅游另有同址记录。",
+    "bvids": [
+      "BV13kp8z2EkT"
+    ],
+    "source": "https://www.bilibili.com/video/BV13kp8z2EkT/"
+  },
+  {
+    "name": "BUONO BUONO",
+    "address": "鼓西街道省府路35号",
+    "district": "鼓楼区",
+    "lat": 26.09015,
+    "lon": 119.292506,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=a9381a994d40062a09b93a29",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13280978.88,
+      "y": 2991671.65
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.09325552,
+      "lon": 119.30376502
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "地图商户全称为 BuonoBuono柏诺。作者在视频中介绍其意式冰激凌。",
+    "bvids": [
+      "BV1VXMp6yEJT"
+    ],
+    "source": "https://www.bilibili.com/video/BV1VXMp6yEJT/"
+  },
+  {
+    "name": "一畈丰喜",
+    "address": "建新镇金洲北路30号C座02店面（两岸照明产业园内）",
+    "district": "仓山区",
+    "lat": 26.055583,
+    "lon": 119.255774,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=989a0a01ccd2d50583a00c0f",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13276886.83,
+      "y": 2987405.63
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.05864508,
+      "lon": 119.26700591
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "地图全称为一畈丰喜（金洲北路店），作者以店名介绍烧鸟。",
+    "bvids": [
+      "BV1PcWzzbE6U"
+    ],
+    "source": "https://www.bilibili.com/video/BV1PcWzzbE6U/"
+  },
+  {
+    "name": "榕城bistro炭火斋",
+    "address": "祥坂街11号富力中心C区C5号楼一层商业",
+    "district": "台江区",
+    "lat": 26.064172,
+    "lon": 119.27483,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=ff2dae76882723c3c9c3db68",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13279005.86,
+      "y": 2988486.05
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.06741156,
+      "lon": 119.28604127
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "地图商户全称与作者署名一致。",
+    "bvids": [
+      "BV1vFus6QEw3"
+    ],
+    "source": "https://www.bilibili.com/video/BV1vFus6QEw3/"
+  },
+  {
+    "name": "头彩夜粥",
+    "address": "温泉公园路89号03（温泉小学正对面）",
+    "district": "鼓楼区",
+    "lat": 26.102475,
+    "lon": 119.307442,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=0188a81b765de135ddee8bfd",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13282649.46,
+      "y": 2993160.21
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.10532985,
+      "lon": 119.31877193
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "作者以完整店名介绍，公开地图记录明确到铺。",
+    "bvids": [
+      "BV1rWWo64E7t"
+    ],
+    "source": "https://www.bilibili.com/video/BV1rWWo64E7t/"
+  },
+  {
+    "name": "贵州兴仁大山地摊火锅",
+    "address": "青口镇东南大道53-1号",
+    "district": "闽侯县",
+    "lat": 25.889746,
+    "lon": 119.352452,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=d814a32390c543bde3110391",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13287669.64,
+      "y": 2966962.48
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 25.89264544,
+      "lon": 119.36386849
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "视频标题明确写青口，作者简介署名与青口商户一致，从而区分长乐、福清的类似店名。",
+    "bvids": [
+      "BV1JUAXz3Edg"
+    ],
+    "source": "https://www.bilibili.com/video/BV1JUAXz3Edg/"
+  },
+  {
+    "name": "THE GOOOD PASTA",
+    "address": "勺园文创园3号楼109",
+    "district": "鼓楼区",
+    "lat": 26.084956,
+    "lon": 119.284481,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=5b542b81924d0e31f4eafc2f",
+    "addressSource": "https://map.baidu.com/?qt=inf&uid=c0e496727f343d7ee0110306",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13280082.29,
+      "y": 2991042.37
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.08815079,
+      "lon": 119.2957109
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "作者介绍披萨，地图店名为 THE GOOOD PIZZA&PASTA（芍园里店），隔壁108单元亦用 TheGooodPasta 标识相对位置。",
+    "bvids": [
+      "BV1eU8PzcEGD"
+    ],
+    "source": "https://www.bilibili.com/video/BV1eU8PzcEGD/"
+  },
+  {
+    "name": "海炭烧",
+    "address": "岳峰镇福新中路68号丰泽园6号楼01店面",
+    "district": "晋安区",
+    "lat": 26.084639,
+    "lon": 119.319801,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=a6910d7e91bfa02f4054d77b",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13284034.45,
+      "y": 2990940.55
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.0873248,
+      "lon": 119.33121338
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "视频所写板前料理与地图商户「海炭烧·板前炭火料理」一致。",
+    "bvids": [
+      "BV12PaQzWEkc"
+    ],
+    "source": "https://www.bilibili.com/video/BV12PaQzWEkc/"
+  },
+  {
+    "name": "米丝林",
+    "address": "横锦巷25号1座1层",
+    "district": "鼓楼区",
+    "lat": 26.086224,
+    "lon": 119.296197,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=604338099d726e100c0e6b31",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13281392.07,
+      "y": 2991181.57
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.08928,
+      "lon": 119.30747673
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "原视频标题写明福州、米丝林及菌菇锅；地图检出同名中餐商户。",
+    "bvids": [
+      "BV1hYT4zcEnx"
+    ],
+    "source": "https://www.bilibili.com/video/BV1hYT4zcEnx/"
+  },
+  {
+    "name": "郑爽爽冰饭",
+    "address": "瀛福路阳光悠澜郡二区S2-2号楼13至15号",
+    "district": "台江区",
+    "lat": 26.060376,
+    "lon": 119.324804,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=b7d60cc58d867dc06240a943",
+    "addressSource": "https://www.sohu.com/a/1045476351_435084",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13284593.54,
+      "y": 2987945.94
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.06302921,
+      "lon": 119.33623571
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "两部视频均署名郑爽爽冰饭。地方食记同时记载排尾店的地址、冰饭及生腌海鲜特色，与第二期熟醉花雕蟹相符。",
+    "bvids": [
+      "BV1TUtBzGEwZ",
+      "BV1u12ABGEds"
+    ],
+    "source": "https://www.bilibili.com/video/BV1TUtBzGEwZ/"
+  },
+  {
+    "name": "酉时",
+    "address": "青年横路1-6号",
+    "district": "台江区",
+    "lat": 26.052122,
+    "lon": 119.303456,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=4fa03e7c7df1578101897233",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13282203.72,
+      "y": 2986966.33
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.05508043,
+      "lon": 119.31476783
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "视频标题明确是 omakase，地图商户为酉时寿司·天妇罗·Omakase（上下杭店）。此记录仅关联明确写 omakase 的视频。",
+    "bvids": [
+      "BV1TuqpBKEeA"
+    ],
+    "source": "https://www.bilibili.com/video/BV1TuqpBKEeA/"
+  }
+]

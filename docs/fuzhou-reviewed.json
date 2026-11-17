@@ -3,6 +3,7 @@
   "upName": "酷酷的珊文鱼",
   "asOf": "2026-11-17",
   "reportedTotal": 293,
+  "descriptionReviewedCount": 293,
   "allPagesReviewed": false,
   "note": "293 条为作者全部投稿，含外地、体验不佳和多店合集。门店地址与坐标依逐条来源审核，明确的差评和历史停业投稿不作为好评推荐。",
   "videos": [
@@ -95,12 +96,11 @@
       "crs": "WGS84",
       "coordinateSource": "https://ditu.amap.com/place/B0FFILAS77",
       "bvids": [
-        "BV1v4VpzgE5h",
-        "BV1afNJzGE9z"
+        "BV1v4VpzgE5h"
       ],
       "source": "https://www.bilibili.com/video/BV1v4VpzgE5h/",
       "addressSource": "https://www.gl.gov.cn/xjwz/ztzl/fgfggyhyshjzt/jrbffw/202505/t20250514_5018504.htm",
-      "note": "2025年5月1日福州首店开在东百中心C馆，两个标题指名同一品牌。图点取C馆一层另一家柜台的高德POI，仅代表已确认的商场建筑；柜位与第二期分店未单独核实。",
+      "note": "2025年5月1日福州首店开在东百中心C馆；该期发表于5月7日。图点取同馆一层另一柜位，仅代表C馆建筑。6月同品牌另一期仅在目录列名。",
       "originalCoordinate": {
         "crs": "GCJ-02",
         "lat": 26.084552,
@@ -155,7 +155,7 @@
         "BV1riXbYxECt"
       ],
       "source": "https://www.bilibili.com/video/BV1riXbYxECt/",
-      "note": "标题点名提拉米苏。同期探访资料记载为达明美食街一带流动摊；地图仅取达明路与鼓西路交叉口作为街区参考，不代表视频当日摊位或目前营业位置。"
+      "note": "标题点名提拉米苏。同期探访资料记载为达明美食街一带流动摊；地图仅取达明路与鼓西路交叉口作为街区参考，不代表视频当日摊位或目前营业位置。 另有2024年的甜品探访，不能仅凭同名推定这些投稿都在同一摊位。"
     },
     {
       "name": "久久元宵（延平路店）",
@@ -240,6 +240,27 @@
         "lon": 119.301514
       },
       "note": "投稿简介指名学校对面的清口清汤面，标题说明福四中。实地新闻也记录白马南路门店。地图点为学校的片区参考，只帮助识别这段街道。"
+    },
+    {
+      "name": "巴贝塔（融侨外滩壹号店）",
+      "address": "福州市仓山区燎原路136号融侨外滩壹号F1",
+      "district": "仓山区",
+      "lat": 26.0528547,
+      "lon": 119.2742387,
+      "precision": "poi",
+      "crs": "WGS84",
+      "bvids": [
+        "BV154421F763"
+      ],
+      "source": "https://www.bilibili.com/video/BV154421F763/",
+      "addressSource": "https://hk.trip.com/restaurant/china/fuzhou/detail/restaurant-143177199/",
+      "coordinateSource": "https://gs.ctrip.com/html5/you/foods/fooddetail/164/143177199.html",
+      "originalCoordinate": {
+        "crs": "GCJ-02",
+        "lat": 26.0497396,
+        "lon": 119.2790092
+      },
+      "note": "视频题名明示福州外滩，作者在简介点名巴贝塔。携程同一商场分店给出门牌和GDCoord；近似转换为 WGS84，点位代表商户平台标注，入口未实测。"
     }
   ],
   "reviewedStances": {

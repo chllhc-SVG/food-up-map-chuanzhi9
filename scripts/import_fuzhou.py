@@ -13,6 +13,7 @@ BV = re.compile(r"BV[1-9A-HJ-NP-Za-km-z]{10}\Z")
 DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / "data" / "fuzhou.json"
 DEFAULT_CATALOG = Path(__file__).resolve().parents[1] / "docs" / "fuzhou-catalog.json"
 DEFAULT_MENTIONS = Path(__file__).resolve().parents[1] / "docs" / "fuzhou-mentions.json"
+DEFAULT_EXTRA_COORDINATES = Path(__file__).resolve().parents[1] / "docs" / "fuzhou-extra-coordinates.json"
 
 
 def add_reviewed_mentions(evidence, mentions):
@@ -31,11 +32,14 @@ def add_reviewed_mentions(evidence, mentions):
         catalog[bvid]["namedPlaces"] = details["places"]
         if details.get("reviewNote"):
             catalog[bvid]["reviewNote"] = details["reviewNote"]
+        if details.get("catalogOnly"):
+            catalog[bvid]["indexStatus"] = details["catalogOnly"]
+            continue
         if evidence.get("reviewedStances", {}).get(bvid) in {"negative", "historical_closure"}:
             continue
         for name in details["places"]:
             key = name.casefold()
-            if key in closures:
+            if key in closures or name in details.get("unresolvedNames", []):
                 continue
             if key not in by_name:
                 place = {
@@ -46,6 +50,22 @@ def add_reviewed_mentions(evidence, mentions):
                 by_name[key] = place
                 places.append(place)
             by_name[key]["bvids"].append(bvid)
+
+
+def add_reviewed_coordinates(evidence, rows):
+    by_name = {place["name"].casefold(): place for place in evidence["places"]}
+    for row in rows:
+        key = row["name"].casefold()
+        existing = by_name.get(key)
+        if existing is None:
+            evidence["places"].append(row)
+            by_name[key] = row
+        else:
+            refs = list(dict.fromkeys(existing["bvids"] + row["bvids"]))
+            if existing["precision"] != "pending":
+                raise ValueError(f"同店已有另一位置，请先人工合并：{row['name']}")
+            existing.update(row)
+            existing["bvids"] = refs
 
 
 def build(evidence):
@@ -75,6 +95,8 @@ def build(evidence):
             videos[bvid]["namedPlaces"] = item["namedPlaces"]
         if item.get("reviewNote"):
             videos[bvid]["reviewNote"] = item["reviewNote"]
+        if item.get("indexStatus"):
+            videos[bvid]["indexStatus"] = item["indexStatus"]
 
     places = []
     for row in evidence.get("places", []):
@@ -99,7 +121,8 @@ def build(evidence):
             ],
             "source": row["source"], "note": row.get("note", ""),
         }
-        for name in ("addressSource", "coordinateSource", "coordinateCrosscheck", "originalCoordinate", "stance"):
+        for name in ("addressSource", "coordinateSource", "coordinateCrosscheck", "originalCoordinate",
+                     "derivedGeographicCoordinate", "conversionSource", "stance"):
             if row.get(name):
                 place[name] = row[name]
         places.append(place)
@@ -108,6 +131,12 @@ def build(evidence):
     if reported is not None and (type(reported) is not int or reported < len(videos)):
         raise ValueError("目录计数大于已核实原始总数")
     complete = bool(evidence.get("allPagesReviewed")) and reported is not None and reported == len(videos)
+    description_count = evidence.get("descriptionReviewedCount")
+    if description_count is not None and not 0 <= description_count <= len(videos):
+        raise ValueError("简介复核数量须在当前目录计数内")
+    precision_counts = {
+        key: sum(place["precision"] == key for place in places) for key in ("poi", "address", "area", "pending")
+    }
     return {
         "region": "福州", "up": {"name": evidence.get("upName"), "mid": MID, "url": HOME},
         "catalog": list(videos.values()), "places": places,
@@ -115,6 +144,9 @@ def build(evidence):
             "asOf": snap, "status": "complete_catalog" if complete else ("partial_catalog" if videos else "awaiting_public_catalog"),
             "catalogComplete": complete, "reportedTotal": reported, "catalogCount": len(videos),
             "placeCount": len(places), "mappedCount": sum(row["lat"] is not None for row in places),
+            "descriptionReviewedCount": description_count,
+            "linkedVideoCount": len({v["bvid"] for place in places for v in place["videos"]}),
+            "precisionCounts": precision_counts,
             "source": HOME, "note": evidence.get("note", ""),
         },
     }
@@ -126,6 +158,7 @@ if __name__ == "__main__":
     parser.add_argument("--catalog", type=Path, help="由指定账号公开投稿页逐页核对的目录 JSON 数组")
     parser.add_argument("--out", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--mentions", type=Path, default=DEFAULT_MENTIONS)
+    parser.add_argument("--coordinates", type=Path, default=DEFAULT_EXTRA_COORDINATES)
     args = parser.parse_args()
     evidence = json.loads(args.reviewed_json.read_text(encoding="utf-8-sig"))
     catalog_path = args.catalog or DEFAULT_CATALOG
@@ -142,7 +175,7 @@ if __name__ == "__main__":
         evidence["videos"] = rows + missing
     elif args.catalog:
         parser.error("未找到指定目录文件")
-    if args.mentions.exists():
-        add_reviewed_mentions(evidence, json.loads(args.mentions.read_text(encoding="utf-8-sig")))
+    add_reviewed_coordinates(evidence, json.loads(args.coordinates.read_text(encoding="utf-8-sig")))
+    add_reviewed_mentions(evidence, json.loads(args.mentions.read_text(encoding="utf-8-sig")))
     output = build(evidence)
     args.out.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
