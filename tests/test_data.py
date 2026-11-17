@@ -2,6 +2,9 @@
 import json
 from collections import Counter
 from pathlib import Path
+import subprocess
+import sys
+import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,6 +51,22 @@ class SnapshotTests(unittest.TestCase):
         macau = "BV1pM3b6SErN"
         self.assertTrue(any(v["bvid"] == macau for v in catalog))
         self.assertFalse(any(v["bvid"] == macau for p in data["places"] for v in p["videos"]))
+
+    def test_fuzhou_can_be_republished_offline_from_the_included_evidence(self):
+        with tempfile.TemporaryDirectory() as staging:
+            output = Path(staging) / "fuzhou.json"
+            subprocess.run([sys.executable, str(ROOT / "scripts/import_fuzhou.py"),
+                            str(ROOT / "docs/fuzhou-reviewed.json"), "--out", str(output)],
+                           check=True, cwd=staging)
+            rebuilt = json.loads(output.read_text(encoding="utf-8"))
+        self.assertEqual(rebuilt, load("data/fuzhou.json"))
+
+    def test_fuzhou_keeps_historical_closures_in_the_catalog(self):
+        data = load("data/fuzhou.json")
+        closed = {v["bvid"] for v in data["catalog"] if v.get("stance") == "historical_closure"}
+        self.assertIn("BV1ThGHzREk5", closed)
+        linked = {v["bvid"] for p in data["places"] for v in p["videos"]}
+        self.assertTrue(closed.isdisjoint(linked))
 
 
 if __name__ == "__main__":

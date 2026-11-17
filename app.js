@@ -94,7 +94,7 @@ async function changeCity(id){
 function filterFilms(v,placeSet,words){
  const rel=s.links.get(v.bvid)||new Set(),restricted=s.district||s.fav||s.mapped;
  if(restricted&&![...rel].some(p=>placeSet.has(p._i)))return false;
- const txt=norm([v.title,v.bvid,...(v.namedPlaces||[]),...[...rel].map(p=>[p.name,p.address,p.district].join(' '))].join(' '));
+ const txt=norm([v.title,v.bvid,v.reviewNote||'',...(v.namedPlaces||[]),...[...rel].map(p=>[p.name,p.address,p.district].join(' '))].join(' '));
  return allWords(txt,words);
 }
 function recompute(resetView=true){
@@ -132,12 +132,13 @@ function renderDetail(){const el=$('detail'),p=s.sel;el.replaceChildren();if(!p)
  for(const [k,label] of [['addressSource','核对门牌来源 ↗'],['coordinateSource','核对参考坐标 ↗']])if(safeUrl(p[k]))el.append(link(label,p[k]));
  if(p.source){const line=tag('p');if(safeUrl(p.source))line.append(link('查看收录依据 ↗',p.source));else line.textContent='收录依据：'+p.source;el.append(line);}
  if(s.group&&s.group.length>1){const same=tag('label','detailsub','该图点内的店铺 '),choices=tag('select','group-choice');for(const item of s.group)choices.add(new Option(item.name,String(item._i),false,item===p));choices.addEventListener('change',()=>choose(s.data.places[Number(choices.value)],false,s.group));same.append(choices);el.append(same);}
- if(p.videos.length){el.append(tag('p','detailsub','关联原视频 · '+p.videos.length));for(const v of p.videos){el.append(link(v.title+' ↗',v.url));const advisory=videoCaution(v);if(advisory)el.append(tag('span','meta',advisory));}}
+ if(p.videos.length){el.append(tag('p','detailsub','关联原视频 · '+p.videos.length));for(const v of p.videos){el.append(link(v.title+' ↗',v.url));const advisory=videoCaution(v);if(advisory)el.append(tag('span','meta',advisory));if(v.reviewNote&&!p.note?.includes(v.reviewNote))el.append(tag('p','',v.reviewNote));}}
  const fav=btn(saved.has(key(p))?'★ 已收藏':'☆ 收藏这家店',()=>{const k=key(p);if(saved.has(k))saved.delete(k);else saved.add(k);try{localStorage.setItem('flavor-atlas-favorites-v1',JSON.stringify([...saved]));}catch{}recompute(false);});pressed(fav,saved.has(key(p)));el.append(fav);
 }
 function renderFilms(){const el=$('videos');el.replaceChildren();for(const v of s.films.slice(0,s.vlimit)){
  const card=tag('article','film'),h=tag('h3');h.append(link(v.title+' ↗',v.url));const date=String(v.published??'').slice(0,10);card.append(tag('span','meta',[date,v.bvid].filter(Boolean).join(' / ')),h);
  const advisory=videoCaution(v);if(advisory)card.append(tag('span','meta',advisory));
+ if(v.reviewNote)card.append(tag('p','film-note',v.reviewNote));
  const related=[...(s.links.get(v.bvid)||[])];const row=tag('div','related');for(const p of related)row.append(btn(p.name+' ↗',()=>choose(p,true)));
  if(!related.length){const names=(v.namedPlaces||[]).join('、');row.append(tag('span','meta',(names?'原片提及 '+names:'作者投稿')+' · 未纳入本城店铺'));}card.append(row);el.append(card);}
  if(!s.films.length)message(el,'当前条件下没有匹配的视频。');$('morevideos').hidden=s.vlimit>=s.films.length;
