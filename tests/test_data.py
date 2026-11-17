@@ -36,7 +36,21 @@ class SnapshotTests(unittest.TestCase):
 
     def test_wuhan_preserves_location_grades(self):
         data = load("data/wuhan.json")
-        self.assertEqual(len(data["catalog"]), 342)
+        update = load("docs/wuhan-catalog-update.json")
+        coverage = data["coverage"]
+        catalog = data["catalog"]
+        self.assertEqual(coverage["snapshotDate"], "2026-11-17")
+        self.assertEqual(coverage["reviewedOn"], "2026-09-23")
+        self.assertEqual(len(catalog), update["reportedTotal"])
+        self.assertEqual(len(catalog), 359)
+        self.assertEqual(coverage["catalogVideos"], len(catalog))
+        self.assertEqual(coverage["unlinkedVideos"], sum(coverage["unlinkedReasons"].values()))
+        self.assertEqual(coverage["linkedVideos"] + coverage["unlinkedVideos"], len(catalog))
+        added = [{k: v[k] for k in ("published", "bvid", "title")}
+                 for v in catalog if v["published"][:10] > update["previousSnapshotDate"]]
+        self.assertEqual(added, update["added"])
+        self.assertEqual(len(added), 17)
+        self.assertIn(update["coPublishedBvid"], {v["bvid"] for v in catalog})
         self.assertEqual(Counter(p["precision"] for p in data["places"]),
                          {"poi": 203, "address": 42, "area": 67, "pending": 14})
 

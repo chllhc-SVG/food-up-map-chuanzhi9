@@ -6,6 +6,7 @@ Reads an existing snapshot and never fetches Bilibili or map APIs.
 
 import argparse
 from collections import Counter
+from datetime import date
 import json
 from pathlib import Path
 import re
@@ -14,6 +15,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 PRECISIONS = ("poi", "address", "area", "pending")
 UP_URL = "https://space.bilibili.com/9433848/upload/video"
+CATALOG_UPDATE = Path(__file__).resolve().parents[1] / "docs" / "wuhan-catalog-update.json"
 
 
 def video_info(record):
@@ -91,6 +93,36 @@ def extract(raw):
     }
 
 
+def update_catalog(result, update):
+    coverage = result["coverage"]
+    if update["source"] != UP_URL or update["previousSnapshotDate"] != coverage["snapshotDate"]:
+        raise ValueError("武汉投稿增量与历史快照不匹配")
+    base_date = date.fromisoformat(coverage["snapshotDate"])
+    as_of = date.fromisoformat(update["snapshotDate"])
+    catalog = result["catalog"]
+    ids = {v["bvid"] for v in catalog}
+    for row in update["added"]:
+        info = video_info(row)
+        published = date.fromisoformat(row["published"])
+        if info["bvid"] in ids or not info["title"] or not base_date < published <= as_of:
+            raise ValueError(f"新增投稿 BV、标题或日期不正确：{row['bvid']}")
+        catalog.append({**info, "published": row["published"]})
+        ids.add(info["bvid"])
+
+    if len(catalog) != update["reportedTotal"] or update["coPublishedBvid"] not in ids:
+        raise ValueError("武汉投稿总数或合作稿与核实结果不一致")
+    catalog.sort(key=lambda row: row["published"], reverse=True)
+    coverage["snapshotDate"] = update["snapshotDate"]
+    coverage["catalogVideos"] = len(catalog)
+    coverage["reportedTotal"] = update["reportedTotal"]
+    coverage["unlinkedVideos"] = len(catalog) - coverage["linkedVideos"]
+    coverage["unlinkedReasons"]["awaiting_place_review"] = len(update["added"])
+    coverage["statusNote"] = (
+        f"视频目录含合作稿。地点沿用 {coverage['reviewedOn']} 核对结果，"
+        f"{len(update['added'])} 条新增视频的店址待核。门店当前营业状态未逐店核实。"
+    )
+
+
 def encode(result):
     # One row per repeated record keeps the snapshot both compact and diffable.
     dump = lambda value: json.dumps(value, ensure_ascii=False, separators=(",", ":"), allow_nan=False)
@@ -104,10 +136,13 @@ def encode(result):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path)
+    parser.add_argument("--historical", action="store_true", help="仅重建 2026-09-22 的历史快照")
     parser.add_argument("--output", type=Path,
                         default=Path(__file__).resolve().parents[1] / "data" / "wuhan.json")
     args = parser.parse_args()
     result = extract(json.loads(args.source.read_text(encoding="utf-8-sig")))
+    if not args.historical:
+        update_catalog(result, json.loads(CATALOG_UPDATE.read_text(encoding="utf-8")))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(encode(result))
     print(json.dumps(result["coverage"], ensure_ascii=False, indent=2))

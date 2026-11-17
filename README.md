@@ -14,7 +14,7 @@
 
 ## 来源和复核
 
-- 武汉保留了 2026-09-22 历史快照中的 342 条投稿目录记录、326 处地点。历史目录含一条合作视频。坐标分为店铺、门牌、片区和待核四级，沿用原项目的近似 WGS84 转换及其精度标注。原始材料的导入方式见 `scripts/import_wuhan.py --help`。
+- 武汉视频目录更新于 2026-11-17，作者投稿页共 9 页、359 条，含一条合作视频。较 9 月 22 日新增的 17 条投稿可在视频目录查看，店址待核。326 处历史地点沿用 9 月 23 日的核对结果，其中 312 处有坐标。运行 `python scripts/import_wuhan.py "原项目/完整整理数据.json"` 将历史资料与 `docs/wuhan-catalog-update.json` 合并重建；增加 `--historical --output 历史快照.json` 可单独导出旧版。[武汉作者投稿页](https://space.bilibili.com/9433848/upload/video)
 - 福州保留 2026-11-17 核对的 8 页作者投稿，共 293 个不同的 BV 号。三列原始目录在 `docs/fuzhou-catalog.json`。原视频关联与地点依据在 `docs/fuzhou-reviewed.json`，可运行 `python scripts/import_fuzhou.py docs/fuzhou-reviewed.json --catalog docs/fuzhou-catalog.json --out data/fuzhou.json` 复现。视频目录完整度和地点核实进度独立展示。
 - 排序依据与坐标含义可在页面的「数据说明」中查看。历史探店记录不提供实时营业状态；显示的公里数是直线距离。经主动选择载入的街道底图及视频原站须联网。打开街道底图后，第三方瓦片服务可通过可见范围推知正在查看的区域。设备定位默认不采集，不写入项目服务或浏览器存储。
 - 上游作者保留视频与文本权益。此工具保留目录元数据、出处和必要的地点事实。Leaflet 许可证随代码提供，地图及点位数据的对外使用遵循各自来源的条件。

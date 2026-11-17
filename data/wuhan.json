@@ -2,6 +2,23 @@
 "region":"武汉",
 "up":{"name":"员外的觅食人生","mid":9433848,"url":"https://space.bilibili.com/9433848/upload/video"},
 "catalog":[
+{"bvid":"BV1sxsG63EqW","title":"大盘鸡就要拌着面才好吃","url":"https://www.bilibili.com/video/BV1sxsG63EqW/","published":"2026-11-14"},
+{"bvid":"BV1HzWy6ZEYJ","title":"天冷了，来个鸡煲","url":"https://www.bilibili.com/video/BV1HzWy6ZEYJ/","published":"2026-11-11"},
+{"bvid":"BV1uy4E6gEkF","title":"来一碗竹升面吧","url":"https://www.bilibili.com/video/BV1uy4E6gEkF/","published":"2026-11-07"},
+{"bvid":"BV1bqxQ6FEsY","title":"一碗猪脚饭，一生猪脚情","url":"https://www.bilibili.com/video/BV1bqxQ6FEsY/","published":"2026-11-04"},
+{"bvid":"BV1cFxs66Ei6","title":"日式拉面的正确打开方式","url":"https://www.bilibili.com/video/BV1cFxs66Ei6/","published":"2026-11-01"},
+{"bvid":"BV17yxF6YErp","title":"武汉真的什么吃的都有","url":"https://www.bilibili.com/video/BV17yxF6YErp/","published":"2026-10-29"},
+{"bvid":"BV1L5nU6SEAV","title":"煎馄饨真好吃","url":"https://www.bilibili.com/video/BV1L5nU6SEAV/","published":"2026-10-26"},
+{"bvid":"BV1q2nW6DEps","title":"驴肉滚豆腐，皇帝不及吾","url":"https://www.bilibili.com/video/BV1q2nW6DEps/","published":"2026-10-23"},
+{"bvid":"BV1obnw6XEA1","title":"印度美食，有点意思","url":"https://www.bilibili.com/video/BV1obnw6XEA1/","published":"2026-10-20"},
+{"bvid":"BV1PWJe6WE7c","title":"台州餐馆里的无敌芋艿羹","url":"https://www.bilibili.com/video/BV1PWJe6WE7c/","published":"2026-10-17"},
+{"bvid":"BV1CAWA63Ews","title":"好吃的啫啫煲，好吃的烧鸡","url":"https://www.bilibili.com/video/BV1CAWA63Ews/","published":"2026-10-13"},
+{"bvid":"BV1p8hb6PE31","title":"好吃的炸牛肝","url":"https://www.bilibili.com/video/BV1p8hb6PE31/","published":"2026-10-10"},
+{"bvid":"BV1heh86nExr","title":"社区餐馆，家常口味，味道好","url":"https://www.bilibili.com/video/BV1heh86nExr/","published":"2026-10-07"},
+{"bvid":"BV12yh86kEFK","title":"喝汤好去处，鸽子太香了","url":"https://www.bilibili.com/video/BV12yh86kEFK/","published":"2026-10-04"},
+{"bvid":"BV1t6h86jE1u","title":"超香拌面，超香五拼","url":"https://www.bilibili.com/video/BV1t6h86jE1u/","published":"2026-09-30"},
+{"bvid":"BV19xh86REXv","title":"一人食的小火锅，极致的性价比","url":"https://www.bilibili.com/video/BV19xh86REXv/","published":"2026-09-27"},
+{"bvid":"BV14AaP6zEJ5","title":"宝藏披萨店，每款都好吃","url":"https://www.bilibili.com/video/BV14AaP6zEJ5/","published":"2026-09-24"},
 {"bvid":"BV17Chh6AEk6","title":"一碗咖喱成就一家宝藏小店","url":"https://www.bilibili.com/video/BV17Chh6AEk6/","published":"2026-09-21T17:15:00+08:00"},
 {"bvid":"BV1kieM6JE9g","title":"大学边上的宝藏餐馆，谁说大学生不懂吃？","url":"https://www.bilibili.com/video/BV1kieM6JE9g/","published":"2026-09-17T17:51:58+08:00"},
 {"bvid":"BV19EYB6JEvL","title":"爽吃一家东北菜，吃一整个肘子","url":"https://www.bilibili.com/video/BV19EYB6JEvL/","published":"2026-09-14T17:15:00+08:00"},
@@ -673,5 +690,5 @@
 {"name":"金禧岭南潮粤菜(奥特莱斯店)","address":"黄陂区川龙大道奥莱汇小区G1栋楼","district":"黄陂区","lat":30.7332125,"lon":114.2552805,"precision":"poi","videos":[{"bvid":"BV1zK8hzyELc","title":"武汉一家粤菜酒楼，团购给力，还挺好吃的","url":"https://www.bilibili.com/video/BV1zK8hzyELc/"}],"source":"https://www.amap.com/place/B0K6SZ4ZI8","note":""},
 {"name":"雪峰岭烤肉(汉北水晶城店)","address":"黄陂区环湖路汉北水晶城1期5-1门市","district":"黄陂区","lat":30.720719,"lon":114.3440404,"precision":"poi","videos":[{"bvid":"BV1s4Gm6VEyY","title":"这家烤肉店听我的，点小份","url":"https://www.bilibili.com/video/BV1s4Gm6VEyY/"}],"source":"https://www.amap.com/place/B0FFK5Q6I8","note":""}
 ],
-"coverage":{"catalogVideos":342,"linkedVideos":306,"unlinkedVideos":36,"places":326,"mappedPlaces":312,"precisionCounts":{"poi":203,"address":42,"area":67,"pending":14},"unlinkedReasons":{"missing_address":2,"missing_description":15,"outside_wuhan":12,"summary_or_non_place":7},"snapshotDate":"2026-09-22","reviewedOn":"2026-09-23","coordinateSystem":"WGS84","coordinateNote":"高德 GCJ-02 地理编码经近似逆变换；保留旧快照精度。门牌与区域参考点不保证是店铺入口。","statusNote":"历史视频目录及地点快照，门店当前营业状态未逐店核实。"}
+"coverage":{"catalogVideos":359,"linkedVideos":306,"unlinkedVideos":53,"places":326,"mappedPlaces":312,"precisionCounts":{"poi":203,"address":42,"area":67,"pending":14},"unlinkedReasons":{"missing_address":2,"missing_description":15,"outside_wuhan":12,"summary_or_non_place":7,"awaiting_place_review":17},"snapshotDate":"2026-11-17","reviewedOn":"2026-09-23","coordinateSystem":"WGS84","coordinateNote":"高德 GCJ-02 地理编码经近似逆变换；保留旧快照精度。门牌与区域参考点不保证是店铺入口。","statusNote":"视频目录含合作稿。地点沿用 2026-09-23 核对结果，17 条新增视频的店址待核。门店当前营业状态未逐店核实。","reportedTotal":359}
 }

@@ -1,4 +1,5 @@
 """Optional browser acceptance check. Run the local service first; requires Playwright and Edge."""
+import json
 from pathlib import Path
 
 from playwright.sync_api import expect, sync_playwright
@@ -6,7 +7,8 @@ from playwright.sync_api import expect, sync_playwright
 
 def verify(page):
     page.goto("http://127.0.0.1:8794/")
-    page.get_by_role("button", name="福州", exact=True).click()
+    expect(page.locator(".city-buttons strong")).to_have_text(["福州", "武汉"])
+    expect(page.get_by_role("button", name="福州", exact=True)).to_have_attribute("aria-pressed", "true")
     expect(page.locator("#videocount")).to_contain_text("293")
     search = page.locator("#search")
     search.fill("厚千禧汉堡")
@@ -33,7 +35,12 @@ def verify(page):
     expect(panel).to_contain_text("请使用完整 BV")
     panel.locator("summary").click()
     page.get_by_role("button", name="武汉", exact=True).click()
-    expect(page.locator("#videocount")).to_contain_text("342")
+    expect(page).to_have_url("http://127.0.0.1:8794/?city=wuhan")
+    page.reload()
+    expect(page.get_by_role("button", name="武汉", exact=True)).to_have_attribute("aria-pressed", "true")
+    snapshot_path = Path(__file__).resolve().parents[1] / "data/wuhan.json"
+    wuhan_count = len(json.loads(snapshot_path.read_text(encoding="utf-8-sig"))["catalog"])
+    expect(page.locator("#videocount")).to_have_text(f"{wuhan_count} 条视频")
     page.evaluate("window.scrollTo(0,0)")
     output = Path(__file__).resolve().parents[1] / ".local"
     output.mkdir(exist_ok=True)

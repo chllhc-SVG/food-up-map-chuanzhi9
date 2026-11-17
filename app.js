@@ -1,13 +1,14 @@
 'use strict';
 
 const $ = id => document.getElementById(id);
-const cities = {wuhan:{name:'武汉',lat:30.59,lon:114.30}, fuzhou:{name:'福州',lat:26.08,lon:119.30}};
+const cities = {fuzhou:{name:'福州',lat:26.08,lon:119.30}, wuhan:{name:'武汉',lat:30.59,lon:114.30}};
+const defaultCity = document.querySelector('[data-city]').dataset.city;
 const precision = {poi:'店铺点位',address:'地址参考',area:'片区参考',pending:'坐标待核'};
 const palette = {poi:'#294f38',address:'#ae5429',area:'#75846c'};
 const keywords=['面','火锅','烧烤','粉','海鲜','小吃','鱼','咖啡','甜品','牛肉'];
 let saved;
 try {saved=new Set(JSON.parse(localStorage.getItem('flavor-atlas-favorites-v1')||'[]'));} catch {saved=new Set();}
-const s={city:'wuhan',data:null,sel:null,fav:false,mapped:false,tag:'',pos:null,locHint:'',q:'',district:'',sort:'personal',plimit:12,vlimit:12,visible:[],films:[],links:new Map(),view:null,cityLoad:0,showStreet:false,streetToken:0,emptyNote:'',mapUnit:null,manual:null,approx:false,locToken:0};
+const s={city:defaultCity,data:null,sel:null,fav:false,mapped:false,tag:'',pos:null,locHint:'',q:'',district:'',sort:'personal',plimit:12,vlimit:12,visible:[],films:[],links:new Map(),view:null,cityLoad:0,showStreet:false,streetToken:0,emptyNote:'',mapUnit:null,manual:null,approx:false,locToken:0};
 let streetMap=null,markerLayer=null,leafletPromise;
 const norm=v=>String(v??'').trim().toLocaleLowerCase();
 const regionName=()=>cities[s.city].name;
@@ -227,4 +228,5 @@ window.addEventListener('food-atlas:show-place',event=>{
  resetFilters();s.sel=p;recompute();choose(p,true);
 });
 $('origin').onchange=e=>selectOrigin(e.target.value===''?null:s.data?.places[Number(e.target.value)]);$('approx').onchange=e=>{s.approx=e.target.checked;recompute();};
-changeCity(new URLSearchParams(location.search).get('city')==='fuzhou'?'fuzhou':'wuhan');
+const requestedCity = new URLSearchParams(location.search).get('city');
+changeCity(Object.hasOwn(cities,requestedCity)?requestedCity:defaultCity);

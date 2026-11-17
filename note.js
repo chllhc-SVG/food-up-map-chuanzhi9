@@ -47,7 +47,7 @@
   fold.append(help,form,result,history);
   root.append(fold);
   function city() {
-    return document.querySelector('[data-city][aria-pressed="true"]')?.dataset.city || 'wuhan';
+    return document.querySelector('[data-city][aria-pressed="true"]')?.dataset.city || defaultCity;
   }
   function showPlace(city, p) {
     window.dispatchEvent(new CustomEvent('food-atlas:show-place',{detail:{city,name:p.name,address:p.address}}));
