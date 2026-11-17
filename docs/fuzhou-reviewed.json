@@ -1,0 +1,257 @@
+{
+  "mid": "3493128128432841",
+  "upName": "酷酷的珊文鱼",
+  "asOf": "2026-11-17",
+  "reportedTotal": 293,
+  "allPagesReviewed": false,
+  "note": "293 条为作者全部投稿，含外地、体验不佳和多店合集。门店地址与坐标依逐条来源审核，明确的差评和历史停业投稿不作为好评推荐。",
+  "videos": [
+    {
+      "bvid": "BV1Z5chzTEVg",
+      "title": "福州｜鼓起勇气来吃千元牛排！什么水平？",
+      "published": "2026-02-14"
+    },
+    {
+      "bvid": "BV1afNJzGE9z",
+      "title": "福州｜来康康裕莲茶楼除了蛋挞还有什么好吃的～",
+      "published": "2025-06-19"
+    },
+    {
+      "bvid": "BV1v4VpzgE5h",
+      "title": "福州｜裕莲茶楼也是被我给吃上了！",
+      "published": "2025-05-07"
+    },
+    {
+      "bvid": "BV1hYT4zcEnx",
+      "title": "福州｜二刷米丝林！菌菇锅也是被我约上了！太鲜了！",
+      "published": "2025-06-06"
+    },
+    {
+      "bvid": "BV1riXbYxECt",
+      "title": "福州｜抢到了银河隧道最后一块提拉米苏！",
+      "published": "2025-03-23"
+    },
+    {
+      "bvid": "BV1EBXLYmEAX",
+      "title": "福州｜虽不起眼牛肉馆！好久没吃又馋了～",
+      "published": "2025-03-19"
+    },
+    {
+      "bvid": "BV16CUKYmEo2",
+      "title": "福州｜二刷晨小馆，菜品漂亮味道也漂亮的漂亮饭！",
+      "published": "2024-11-14"
+    },
+    {
+      "bvid": "BV11jmWYKEFA",
+      "title": "福州Bakery｜【不吃面包】真实测评～",
+      "published": "2024-11-12"
+    },
+    {
+      "bvid": "BV1Qv4y1572u",
+      "title": "福州霸腹烤肉｜我永远爱横膈膜！还有可以拉丝的芝士条！",
+      "published": "2023-03-24"
+    },
+    {
+      "bvid": "BV1Qc41177zP",
+      "title": "毕业多年，高中附近屹立不倒的餐馆（3/3）- 久久元宵",
+      "published": "2023-03-14"
+    },
+    {
+      "bvid": "BV1ds4y1V7cK",
+      "title": "毕业多年，高中（福四中）附近屹立不倒的餐馆（1/3）",
+      "published": "2023-03-09"
+    }
+  ],
+  "places": [
+    {
+      "name": "狼群斯",
+      "address": "仓山区横江路融侨外滩壹号F栋1楼48号铺",
+      "district": "仓山区",
+      "lat": 26.0528966,
+      "lon": 119.2742446,
+      "precision": "poi",
+      "source": "https://www.bilibili.com/video/BV1Z5chzTEVg/",
+      "addressSource": "https://guide.michelin.com/sg/zh_CN/fujian-province/fuzhou_1026814/restaurant/j-a-steak-house",
+      "coordinateSource": "https://gs.ctrip.com/html5/you/foods/fooddetail/164/136245453.html",
+      "note": "原视频简介点名狼群斯。米其林核实融侨外滩店门牌，携程与360地图的同址店铺点相符。坐标由携程 GDCoord 近似转换为 WGS84。作者认可口味，也提到价格高。",
+      "bvids": [
+        "BV1Z5chzTEVg"
+      ],
+      "crs": "WGS84",
+      "coordinateCrosscheck": "https://map.360.cn/shenghuo/detail?pguid=4e140aba4450a3cd&src=pc_shenbian",
+      "originalCoordinate": {
+        "crs": "GCJ-02",
+        "lat": 26.0497815,
+        "lon": 119.2790151
+      }
+    },
+    {
+      "name": "裕莲茶楼",
+      "address": "福州市鼓楼区东百中心C馆",
+      "district": "鼓楼区",
+      "lat": 26.0876657,
+      "lon": 119.2945762,
+      "precision": "address",
+      "crs": "WGS84",
+      "coordinateSource": "https://ditu.amap.com/place/B0FFILAS77",
+      "bvids": [
+        "BV1v4VpzgE5h",
+        "BV1afNJzGE9z"
+      ],
+      "source": "https://www.bilibili.com/video/BV1v4VpzgE5h/",
+      "addressSource": "https://www.gl.gov.cn/xjwz/ztzl/fgfggyhyshjzt/jrbffw/202505/t20250514_5018504.htm",
+      "note": "2025年5月1日福州首店开在东百中心C馆，两个标题指名同一品牌。图点取C馆一层另一家柜台的高德POI，仅代表已确认的商场建筑；柜位与第二期分店未单独核实。",
+      "originalCoordinate": {
+        "crs": "GCJ-02",
+        "lat": 26.084552,
+        "lon": 119.299374
+      }
+    },
+    {
+      "name": "虽不起眼牛肉馆",
+      "address": "福州市鼓楼区卫前街66–68号",
+      "district": "鼓楼区",
+      "lat": 26.0916537,
+      "lon": 119.2976022,
+      "precision": "poi",
+      "crs": "WGS84",
+      "coordinateSource": "https://www.amap.com/place/B024F0U2FJ",
+      "bvids": [
+        "BV1EBXLYmEAX"
+      ],
+      "source": "https://www.bilibili.com/video/BV1EBXLYmEAX/",
+      "addressSource": "https://www.fjdaily.com/app/content/2024-01/19/content_2305146.html",
+      "note": "投稿标题点名牛肉馆。福建日报平台与高德商户页所列卫前街66–68号一致，地图采用高德商户点近似转换为 WGS84。",
+      "originalCoordinate": {
+        "crs": "GCJ-02",
+        "lat": 26.088542,
+        "lon": 119.302405
+      }
+    },
+    {
+      "name": "米丝林",
+      "address": "",
+      "district": "",
+      "lat": null,
+      "lon": null,
+      "precision": "pending",
+      "bvids": [
+        "BV1hYT4zcEnx"
+      ],
+      "source": "https://www.bilibili.com/video/BV1hYT4zcEnx/",
+      "note": "标题点名米丝林。尚未核对具体门店位置。"
+    },
+    {
+      "name": "银河隧道",
+      "address": "福州市鼓楼区达明美食街一带（历史流动摊）",
+      "district": "鼓楼区",
+      "lat": 26.091512,
+      "lon": 119.29083,
+      "precision": "area",
+      "crs": "WGS84",
+      "coordinateSource": "https://commons.wikimedia.org/wiki/File:达明美食街，鼓西路达明路交叉口_The_intersection_of_Guxi_Rd._and_Daming_Rd._20210506.jpg",
+      "addressSource": "https://live.16fan.com/info/396357.html",
+      "bvids": [
+        "BV1riXbYxECt"
+      ],
+      "source": "https://www.bilibili.com/video/BV1riXbYxECt/",
+      "note": "标题点名提拉米苏。同期探访资料记载为达明美食街一带流动摊；地图仅取达明路与鼓西路交叉口作为街区参考，不代表视频当日摊位或目前营业位置。"
+    },
+    {
+      "name": "久久元宵（延平路店）",
+      "address": "福州市台江区延平路115号",
+      "district": "台江区",
+      "lat": 26.0554283,
+      "lon": 119.2956765,
+      "precision": "poi",
+      "bvids": [
+        "BV1Qc41177zP"
+      ],
+      "source": "https://www.bilibili.com/video/BV1Qc41177zP/",
+      "note": "同一系列前两期标题指名福四中，第三期点名久久元宵。福州新闻网核对延平路115号，携程同店 GDCoord 近似转换为 WGS84。",
+      "crs": "WGS84",
+      "coordinateSource": "https://gs.ctrip.com/html5/you/foods/fooddetail/164/5441364.html",
+      "addressSource": "https://news.fznews.com.cn/node/19907/20240516/gEdzL1cj9u.shtml",
+      "originalCoordinate": {
+        "crs": "GCJ-02",
+        "lat": 26.0523378,
+        "lon": 119.3004736
+      }
+    },
+    {
+      "name": "不吃面包",
+      "address": "福州市鼓楼区东街口附近",
+      "district": "鼓楼区",
+      "lat": 26.088683,
+      "lon": 119.294747,
+      "precision": "area",
+      "bvids": [
+        "BV11jmWYKEFA"
+      ],
+      "source": "https://www.bilibili.com/video/BV11jmWYKEFA/",
+      "note": "作者于2024年11月点名此店。2025年另一位实地探访者把它列在东街口附近，地图仅标东街口商圈；未核到原视频门牌。",
+      "crs": "WGS84",
+      "coordinateSource": "https://commons.wikimedia.org/wiki/File:Exit_D_of_Dongjiekou_Station_in_Fuzhou_2025.jpg",
+      "addressSource": "https://www.bilibili.com/video/BV1zMcteNE5i/"
+    },
+    {
+      "name": "晨小馆",
+      "address": "",
+      "district": "",
+      "lat": null,
+      "lon": null,
+      "precision": "pending",
+      "bvids": [
+        "BV16CUKYmEo2"
+      ],
+      "source": "https://www.bilibili.com/video/BV16CUKYmEo2/",
+      "note": "标题明确点名二刷晨小馆，地址与具体分店仍待核。"
+    },
+    {
+      "name": "霸腹烤肉",
+      "address": "",
+      "district": "",
+      "lat": null,
+      "lon": null,
+      "precision": "pending",
+      "bvids": [
+        "BV1Qv4y1572u"
+      ],
+      "source": "https://www.bilibili.com/video/BV1Qv4y1572u/",
+      "note": "2023年3月投稿点名该品牌。原视频暂未核到分店，不能采用此后出现的上渡店坐标。"
+    },
+    {
+      "name": "清口清汤面（福四中对面）",
+      "address": "福州市台江区白马南路，福州第四中学对面",
+      "district": "台江区",
+      "lat": 26.0551047,
+      "lon": 119.2967153,
+      "precision": "area",
+      "crs": "WGS84",
+      "bvids": [
+        "BV1ds4y1V7cK"
+      ],
+      "source": "https://www.bilibili.com/video/BV1ds4y1V7cK/",
+      "addressSource": "https://cfsn.cn/news/detail/221/201351.html",
+      "coordinateSource": "https://ditu.amap.com/place/B024F012B8",
+      "originalCoordinate": {
+        "crs": "GCJ-02",
+        "lat": 26.052016,
+        "lon": 119.301514
+      },
+      "note": "投稿简介指名学校对面的清口清汤面，标题说明福四中。实地新闻也记录白马南路门店。地图点为学校的片区参考，只帮助识别这段街道。"
+    }
+  ],
+  "reviewedStances": {
+    "BV1khgW6vECU": "negative",
+    "BV1X1bjzoETf": "negative",
+    "BV1f5o8YPE9L": "negative",
+    "BV1wv4aeWEWW": "negative",
+    "BV1JK421a7eY": "negative",
+    "BV1QH4y167hs": "negative",
+    "BV1Kh4y1L7fx": "negative",
+    "BV1RM411j7yV": "negative",
+    "BV1ThGHzREk5": "historical_closure",
+    "BV1Vj25YHEAC": "historical_closure"
+  }
+}
