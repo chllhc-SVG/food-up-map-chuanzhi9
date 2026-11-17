@@ -13,7 +13,10 @@ BV = re.compile(r"BV[1-9A-HJ-NP-Za-km-z]{10}\Z")
 DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / "data" / "fuzhou.json"
 DEFAULT_CATALOG = Path(__file__).resolve().parents[1] / "docs" / "fuzhou-catalog.json"
 DEFAULT_MENTIONS = Path(__file__).resolve().parents[1] / "docs" / "fuzhou-mentions.json"
-DEFAULT_EXTRA_COORDINATES = Path(__file__).resolve().parents[1] / "docs" / "fuzhou-extra-coordinates.json"
+DEFAULT_COORDINATE_FILES = [
+    DEFAULT_MENTIONS.with_name("fuzhou-extra-coordinates.json"),
+    DEFAULT_MENTIONS.with_name("fuzhou-more-coordinates.json"),
+]
 
 
 def add_reviewed_mentions(evidence, mentions):
@@ -26,7 +29,7 @@ def add_reviewed_mentions(evidence, mentions):
     }
     for bvid, details in mentions.items():
         if bvid not in catalog:
-            continue
+            raise ValueError(f"人工视频索引引用了当前目录中不存在的 BV：{bvid}")
         if details.get("stance"):
             evidence.setdefault("reviewedStances", {})[bvid] = details["stance"]
         catalog[bvid]["namedPlaces"] = details["places"]
@@ -158,24 +161,22 @@ if __name__ == "__main__":
     parser.add_argument("--catalog", type=Path, help="由指定账号公开投稿页逐页核对的目录 JSON 数组")
     parser.add_argument("--out", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--mentions", type=Path, default=DEFAULT_MENTIONS)
-    parser.add_argument("--coordinates", type=Path, default=DEFAULT_EXTRA_COORDINATES)
+    parser.add_argument("--coordinates", nargs="+", type=Path, default=DEFAULT_COORDINATE_FILES)
     args = parser.parse_args()
     evidence = json.loads(args.reviewed_json.read_text(encoding="utf-8-sig"))
     catalog_path = args.catalog or DEFAULT_CATALOG
-    if catalog_path.exists():
-        catalog = json.loads(catalog_path.read_text(encoding="utf-8-sig"))
-        if isinstance(catalog, dict) and str(catalog["up"]["mid"]) != MID:
-            raise ValueError("已有地区快照并非指定福州作者")
-        rows = catalog["catalog"] if isinstance(catalog, dict) else catalog
-        indexed = {r["bvid"] for r in rows}
-        evidence["allPagesReviewed"] = len(indexed) == evidence.get("reportedTotal") and len(rows) == len(indexed)
-        missing = [r for r in evidence["videos"] if r["bvid"] not in indexed]
-        if evidence["allPagesReviewed"] and missing:
-            raise ValueError("完整目录缺少已有核实视频，请人工复核")
-        evidence["videos"] = rows + missing
-    elif args.catalog:
-        parser.error("未找到指定目录文件")
-    add_reviewed_coordinates(evidence, json.loads(args.coordinates.read_text(encoding="utf-8-sig")))
+    catalog = json.loads(catalog_path.read_text(encoding="utf-8-sig"))
+    if isinstance(catalog, dict) and str(catalog["up"]["mid"]) != MID:
+        raise ValueError("已有地区快照并非指定福州作者")
+    rows = catalog["catalog"] if isinstance(catalog, dict) else catalog
+    indexed = {r["bvid"] for r in rows}
+    evidence["allPagesReviewed"] = len(indexed) == evidence.get("reportedTotal") and len(rows) == len(indexed)
+    missing = [r for r in evidence["videos"] if r["bvid"] not in indexed]
+    if evidence["allPagesReviewed"] and missing:
+        raise ValueError("完整目录缺少已有核实视频，请人工复核")
+    evidence["videos"] = rows + missing
+    for coordinate_file in args.coordinates:
+        add_reviewed_coordinates(evidence, json.loads(coordinate_file.read_text(encoding="utf-8-sig")))
     add_reviewed_mentions(evidence, json.loads(args.mentions.read_text(encoding="utf-8-sig")))
     output = build(evidence)
     args.out.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

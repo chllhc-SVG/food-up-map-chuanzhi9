@@ -1,0 +1,325 @@
+[
+  {
+    "name": "patch bistro布丁",
+    "address": "西湖湖滨新城66-1号",
+    "district": "鼓楼区",
+    "lat": 26.093712,
+    "lon": 119.281411,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=8d9abf61d19849dae9f853eb",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13279738.88,
+      "y": 2992123.18
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.0969182,
+      "lon": 119.29262603
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "视频署名 Patch Bistro。地图记录湖滨小区北区店，携程也将店址列在西湖湖头街66号。",
+    "bvids": [
+      "BV12ojBz1Ezp"
+    ],
+    "source": "https://www.bilibili.com/video/BV12ojBz1Ezp/",
+    "addressSource": "https://tw.trip.com/restaurant/china/fuzhou/detail/restaurant-136234563/"
+  },
+  {
+    "name": "台湾悠客",
+    "address": "金山街道石边路52号金山碧水三期夏沁苑1号楼03店面",
+    "district": "仓山区",
+    "lat": 26.047948,
+    "lon": 119.248075,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=7e312babc911960743ab9a67",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13276032.16,
+      "y": 2986448.57
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.05087898,
+      "lon": 119.25932836
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "identitySource": "https://www.sina.cn/news/detail/5335088306323824.html",
+    "note": "作者描述小区里的芒果冰。夏沁苑内同名冰店提供台式黑糖挫冰，另有公开食客记录其芒果绵绵冰。",
+    "bvids": [
+      "BV1jTEwzwEJp"
+    ],
+    "source": "https://www.bilibili.com/video/BV1jTEwzwEJp/"
+  },
+  {
+    "name": "三姐河粉",
+    "address": "福马路132号",
+    "district": "晋安区",
+    "lat": 26.079821,
+    "lon": 119.322643,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=162bb0a580ce13060c0e6b2a",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13284352.49,
+      "y": 2990343.36
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.08248014,
+      "lon": 119.33407035
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "视频题名写越南河粉，简介署名三姐河粉，与该处商户「三姐河粉越氏Pho」一致。",
+    "bvids": [
+      "BV1aMGmziELv"
+    ],
+    "source": "https://www.bilibili.com/video/BV1aMGmziELv/"
+  },
+  {
+    "name": "叁食米仓",
+    "address": "卧湖路4号",
+    "district": "鼓楼区",
+    "lat": 26.09217,
+    "lon": 119.289016,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=0ec513b03fe6fa3acae33c7f",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13280588.47,
+      "y": 2991925.75
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.09531672,
+      "lon": 119.30025795
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "视频中的稀豆粉、饵丝与商户「叁食米仓·云南厨房」吻合。作者对不同菜品的评价有别。",
+    "bvids": [
+      "BV1gNwve5Ena"
+    ],
+    "source": "https://www.bilibili.com/video/BV1gNwve5Ena/"
+  },
+  {
+    "name": "hi five 合拍咖啡",
+    "address": "开元路19-1号",
+    "district": "鼓楼区",
+    "lat": 26.091965,
+    "lon": 119.296724,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=3883e2f4c954cbd0b11e36e6",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13281450.62,
+      "y": 2991887.7
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.09500807,
+      "lon": 119.30800269
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "原简介写 hi five 合拍咖啡。商户和当地探店记录均写「和拍咖啡 HiFive」，同指开元路19-1号。",
+    "bvids": [
+      "BV16TwPerEvW"
+    ],
+    "source": "https://www.bilibili.com/video/BV16TwPerEvW/",
+    "addressSource": "https://sxq.ink/books/fuzhou-green-book/pudding/"
+  },
+  {
+    "name": "橘糖",
+    "address": "高新区建平路48号村委会一层07店面",
+    "district": "闽侯县",
+    "lat": 26.054505,
+    "lon": 119.20339,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=93d25168da19633d73455bd4",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13271071.86,
+      "y": 2987218.41
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.05712591,
+      "lon": 119.21476972
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "视频介绍适合健身人士的面包，署名与「橘糖（低糖手作面包）」名称及品类相符。",
+    "bvids": [
+      "BV1WuSuYaEqX"
+    ],
+    "source": "https://www.bilibili.com/video/BV1WuSuYaEqX/"
+  },
+  {
+    "name": "一盒甜品",
+    "address": "浦东路18-20号双杭城朗庭二期3号楼10号店铺",
+    "district": "台江区",
+    "lat": 26.063665,
+    "lon": 119.296381,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=3988cb7d643fda8fc6effbe6",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13281412.74,
+      "y": 2988402.45
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.06673326,
+      "lon": 119.30766241
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "两条投稿均署名一盒甜品。百度商户与同址食品公司条目都列出 Inner 一盒甜品和该门牌。",
+    "bvids": [
+      "BV19vf5YHEAc",
+      "BV1dmUsYoEuS"
+    ],
+    "source": "https://www.bilibili.com/video/BV19vf5YHEAc/",
+    "addressSource": "https://map.baidu.com/?qt=inf&uid=16586b9244d02a05f7b916af"
+  },
+  {
+    "name": "La Mesca",
+    "address": "营房里6-7号",
+    "district": "鼓楼区",
+    "lat": 26.082582,
+    "lon": 119.291829,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=009582c4f4ad6b1d1fe9996e",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13280903.6,
+      "y": 2990740.56
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.08570242,
+      "lon": 119.30308878
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "作者署名 La Mesca 并介绍墨西哥菜，中国墨西哥商会名录和商户地图均确认三坊七巷的同一门牌。",
+    "bvids": [
+      "BV1MZzJYVEFL"
+    ],
+    "source": "https://www.bilibili.com/video/BV1MZzJYVEFL/",
+    "addressSource": "https://www.mexcham.org/cn/mexi_restaurant/%E6%A2%85%E6%96%AF%E5%8D%A1%E5%A2%A8%E8%A5%BF%E5%93%A5%E9%A4%90%E5%90%A7/"
+  },
+  {
+    "name": "有鲤刨冰",
+    "address": "对湖街道仓前路309号万科九里商务中心X1-2沿街店面",
+    "district": "仓山区",
+    "lat": 26.046564,
+    "lon": 119.303122,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=cd02e02e8f6de505c91b9589",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13282165.68,
+      "y": 2986282.39
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.04953045,
+      "lon": 119.31442611
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "视频介绍有鲤的日式刨冰。福州商户地图记录为「有鲤甜品·松饼·刨冰（烟台山店）」。",
+    "bvids": [
+      "BV1cLYieLEN5"
+    ],
+    "source": "https://www.bilibili.com/video/BV1cLYieLEN5/"
+  },
+  {
+    "name": "豆岛鲷鱼烧",
+    "address": "东泰路156号",
+    "district": "鼓楼区",
+    "lat": 26.086496,
+    "lon": 119.298116,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=d7f5696113d31a72f7b916f2",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13281606.79,
+      "y": 2991211.39
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.0895219,
+      "lon": 119.30940557
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "原简介将豆岛鲷鱼烧与嘟厚列在同一条投稿。两家地图门店分别为东泰路156号、158号。",
+    "bvids": [
+      "BV1mjpGeFEFq"
+    ],
+    "source": "https://www.bilibili.com/video/BV1mjpGeFEFq/",
+    "coordinateCrosscheck": "https://map.baidu.com/?qt=inf&uid=7d377e0abd4c96d14d554768"
+  },
+  {
+    "name": "嘟厚",
+    "address": "东街街道东泰路158号",
+    "district": "鼓楼区",
+    "lat": 26.086478,
+    "lon": 119.298128,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=7d377e0abd4c96d14d554768",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13281608.13,
+      "y": 2991209.15
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.08950373,
+      "lon": 119.30941761
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "两条投稿署名嘟厚，其中一条同时点名隔壁的豆岛鲷鱼烧；公开地图可核相邻门牌。",
+    "bvids": [
+      "BV1mjpGeFEFq",
+      "BV1n7xietExk"
+    ],
+    "source": "https://www.bilibili.com/video/BV1mjpGeFEFq/",
+    "coordinateCrosscheck": "https://map.baidu.com/?qt=inf&uid=d7f5696113d31a72f7b916f2"
+  },
+  {
+    "name": "jili糖水",
+    "address": "鼓东街道开元路20-1号",
+    "district": "鼓楼区",
+    "lat": 26.091917,
+    "lon": 119.296601,
+    "precision": "poi",
+    "crs": "WGS84",
+    "coordinateSource": "https://map.baidu.com/?qt=inf&uid=ac323d568828e35aae04579e",
+    "originalCoordinate": {
+      "crs": "BD09MC",
+      "x": 13281436.78,
+      "y": 2991882.05
+    },
+    "derivedGeographicCoordinate": {
+      "crs": "BD09LL",
+      "lat": 26.09496223,
+      "lon": 119.30787836
+    },
+    "conversionSource": "https://github.com/hujiulong/gcoord",
+    "note": "作者两次署名 jili糖水，同城另一位探店者视频标题同时写出 jili、叽哩两个名称。地图以叽哩糖水登记。",
+    "bvids": [
+      "BV1mX7gzBEzM",
+      "BV1zyZ8YqEau"
+    ],
+    "source": "https://www.bilibili.com/video/BV1mX7gzBEzM/",
+    "identitySource": "https://www.bilibili.com/video/BV1JQgazPELm/"
+  }
+]
