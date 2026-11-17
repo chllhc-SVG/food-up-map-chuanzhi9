@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = "评审源码.zip"
 HISTORY = "完整开发历史.bundle"
 FINAL_ZIP = "传智杯AI创新应用挑战赛-美食UP主的榜单推荐.zip"
+PRODUCT_VIDEO = "演示视频.mp4"
+CONTEST_VIDEO = "赛事规定版（含AI协作）.mp4"
 
 
 def run_git(*args):
@@ -36,8 +38,10 @@ def package(repository):
         run_git("archive", "--format=zip", "--output=" + str(stage / SOURCE), "HEAD")
         run_git("bundle", "create", str(stage / HISTORY), "--branches", "--tags", "HEAD")
         run_git("bundle", "verify", str(stage / HISTORY))
-        for name in ("作品说明.pdf", "演示视频.mp4", "报名表作品简介.txt"):
+        for name in ("作品说明.pdf", PRODUCT_VIDEO, CONTEST_VIDEO, "报名表作品简介.txt"):
             shutil.copy2(ROOT / "competition" / name, stage / name)
+        if digest(stage / PRODUCT_VIDEO) == digest(stage / CONTEST_VIDEO):
+            raise ValueError("两部视频内容相同，请复核产品演示和赛事规定版的文件。")
         commit = run_git("rev-parse", "HEAD").strip()
         access = repository or "仓库访问方式请与选手确认。离线复核可使用完整开发历史.bundle。"
         entry = stage / "评审入口.txt"
@@ -46,7 +50,9 @@ def package(repository):
             f"参赛代码仓库\n{access}\n版本 {commit}\n\n"
             f"打开地图\n解压《{SOURCE}》，在有 Python 3.10+ 的电脑上双击「启动.cmd」，"
             "或运行 python server.py，访问 http://127.0.0.1:8794/ 。运行不需要密钥。\n\n"
-            "评审顺序\n先看《演示视频.mp4》；《作品说明.pdf》解释排名、点位和开发取舍。"
+            f"视频入口\n《{PRODUCT_VIDEO}》展示桌面端与手机端怎样查找附近美食、回看测评、"
+            f"挑选旅行时顺路的店。《{CONTEST_VIDEO}》保留赛道要求的 AI 协作过程，供正式视频栏使用。\n\n"
+            "技术文档\n《作品说明.pdf》解释排名、点位和开发取舍。"
             "源码根目录的 README.md 给出复现步骤。docs/prompts/ 含三项功能的原始对话、截图和提交对照。\n\n"
             f"离线查看历史\ngit clone \"{HISTORY}\" food-up-map\n"
             "git -C food-up-map log --reverse --oneline\n",
