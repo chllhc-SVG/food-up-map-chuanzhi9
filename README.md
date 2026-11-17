@@ -4,6 +4,13 @@
 
 ## 评审快速复现（10 分钟内）
 
+可下载提交包里的《评审源码.zip》，也可克隆公开仓库以查看完整提交历史。
+
+```console
+git clone https://github.com/chllhc-SVG/food-up-map-chuanzhi9.git
+cd food-up-map-chuanzhi9
+```
+
 准备 Python 3.10+ 和现代浏览器。解压作品源码或克隆完整仓库，在含 `server.py` 的目录打开终端。Windows 可直接双击 `启动.cmd`。macOS/Linux 可把下列命令中的 `python` 换为 `python3`。
 
 ```console
@@ -18,6 +25,7 @@ python server.py
 
 ## 评审材料入口
 
+- [技术说明 PDF](competition/作品说明.pdf) · [省赛材料清单与演示时间轴](competition/材料清单.md)
 - 项目由一名选手与 Codex 协作开发。9 月武汉原型贡献已有数据，本届从双城需求开始新建仓库。使用 `git log --reverse --oneline` 查看实际开发顺序。[原始需求和沿用范围](BRIEF.md)
 - 三项核心迭代可按“原话、方案、反馈、修改、验证”的顺序回查。[迭代索引](docs/prompts/迭代索引.md) · [对话历史导出](docs/prompts/核心对话导出.json)
 
