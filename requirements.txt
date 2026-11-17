@@ -1,0 +1,2 @@
+# Python 3.10+. The local map, its HTTP service, the data importers and
+# tests/test_data.py use only the Python standard library.

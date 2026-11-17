@@ -10,6 +10,7 @@ from datetime import date
 import json
 from pathlib import Path
 import re
+import subprocess
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 
@@ -135,12 +136,24 @@ def encode(result):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("source", type=Path)
+    parser.add_argument("source", type=Path, nargs="?", help="武汉原型导出的完整整理数据.json")
+    parser.add_argument("--from-git", action="store_true", help="从本仓库最初导入的武汉快照离线重建")
     parser.add_argument("--historical", action="store_true", help="仅重建 2026-09-22 的历史快照")
     parser.add_argument("--output", type=Path,
                         default=Path(__file__).resolve().parents[1] / "data" / "wuhan.json")
     args = parser.parse_args()
-    result = extract(json.loads(args.source.read_text(encoding="utf-8-sig")))
+    if bool(args.source) == args.from_git:
+        parser.error("请选择一个输入：原始 JSON 路径，或 --from-git")
+    if args.from_git:
+        repo = Path(__file__).resolve().parents[1]
+        try:
+            raw = subprocess.check_output(["git", "-C", str(repo), "show", "1c5d780:data/wuhan.json"],
+                                          stderr=subprocess.DEVNULL)
+        except (FileNotFoundError, subprocess.CalledProcessError):
+            parser.error("需要含完整开发历史的 Git 仓库。可用随包的 Git bundle 克隆，或使用原始 JSON 路径。")
+        result = json.loads(raw)
+    else:
+        result = extract(json.loads(args.source.read_text(encoding="utf-8-sig")))
     if not args.historical:
         update_catalog(result, json.loads(CATALOG_UPDATE.read_text(encoding="utf-8")))
     args.output.parent.mkdir(parents=True, exist_ok=True)

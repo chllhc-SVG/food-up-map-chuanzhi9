@@ -1,0 +1,2 @@
+# Optional. Used by the browser acceptance scripts with installed Microsoft Edge.
+playwright==1.60.0
