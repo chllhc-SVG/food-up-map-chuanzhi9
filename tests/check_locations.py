@@ -26,6 +26,7 @@ def verify_location(page: Page):
 
     page.locator("#origin").select_option(label="米丝林 · 店铺点位")
     expect(page.locator("#sort")).to_have_value("near")
+    expect(page.locator("#location")).to_contain_text("已切换为「距出发点最近」")
     expect(page.locator("#location")).to_contain_text("手选起点「米丝林」")
     origin_card = card(page, "米丝林")
     expect(origin_card).to_contain_text("直线约 0 米")
@@ -69,6 +70,20 @@ def verify_saved_places(page: Page):
     page.locator("#onlyfav").click()
 
 
+def verify_device_sort_notice(browser):
+    with browser.new_context(geolocation={"latitude": 26.08, "longitude": 119.30},
+                             permissions=["geolocation"], locale="zh-CN") as context:
+        page = context.new_page()
+        page.goto(f"{URL}/?city=fuzhou")
+        expect(page.locator("#channel")).to_contain_text("酷酷的珊文鱼")
+        page.locator("#locate").click()
+        expect(page.locator("#sort")).to_have_value("near")
+        expect(page.locator("#location")).to_contain_text("已切换为「距出发点最近」")
+        page.locator("#sort").select_option("personal")
+        expect(page.locator("#location")).not_to_contain_text("已切换为")
+        expect(page.locator("#location")).to_contain_text("设备位置")
+
+
 def verify_mixed_film(page: Page):
     search = page.locator("#search")
     search.fill("CARPORT")
@@ -101,8 +116,9 @@ def main():
             meters = verify_location(page)
             verify_saved_places(page)
             verify_mixed_film(page)
+            verify_device_sort_notice(browser)
             assert not errors, errors
-            print(f"PASS: manual origin after denied geolocation; mall address {meters} m; "
+            print(f"PASS: device and manual origin show the automatic sort change; mall address {meters} m; "
                   "area distances opt-in; favorite persisted and remained city-specific; "
                   f"multi-store film {MULTI_STORE_FILM} searchable without a false burger match.")
         finally:

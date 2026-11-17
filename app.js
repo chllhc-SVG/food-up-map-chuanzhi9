@@ -67,16 +67,22 @@ function geoText(){
  if(s.manual){const approx=s.manual.precision==='area'?' 该起点为片区参考，距离可能偏离门店入口，误差范围未实测。':'';return [s.locHint,'当前按手选起点「'+s.manual.name+'」估算直线距离。',approx].filter(Boolean).join(' ');}
  if(!s.pos)return s.locHint||'可使用设备位置，也可选择本城店铺或地标作出发点。';
  const cityKm=km(s.pos,cities[s.city]);let base=cityKm>80?'设备位置距'+regionName()+'市中心参考点约 '+Math.round(cityKm)+' 公里。可改选本城出发点。':'已使用设备位置作出发点。';
- return base+(s.pos.accuracy?' 设备报告精度约 '+Math.round(s.pos.accuracy)+' 米。':'')+' 距离仅为直线估算。';
+ return [s.locHint,base+(s.pos.accuracy?' 设备报告精度约 '+Math.round(s.pos.accuracy)+' 米。':'')+' 距离仅为直线估算。'].filter(Boolean).join(' ');
+}
+function sortAfterOriginChange(){
+ const next=origin()?'near':'personal';
+ s.locHint=next==='near'&&s.sort!==next?'已切换为「距出发点最近」。可在排序菜单选回「为我推荐」。':'';
+ s.sort=next;$('sort').value=next;
 }
 function selectOrigin(p){
- s.locToken++;$('locate').disabled=false;s.manual=p;s.locHint='';$('origin').value=p?String(p._i):'';s.sort=origin()?'near':'personal';$('sort').value=s.sort;
+ s.locToken++;$('locate').disabled=false;s.manual=p;$('origin').value=p?String(p._i):'';sortAfterOriginChange();
  if(p&&!s.data.places.some(precise)){s.approx=true;$('approx').checked=true;}s.sel=null;recompute();
 }
 function resetStreet(){s.streetToken++;s.showStreet=false;s.emptyNote='';if(streetMap){streetMap.remove();streetMap=null;markerLayer=null;}$('street').hidden=true;$('plot').hidden=false;pressed($('online'),false);$('online').textContent='街道底图';}
 function resetFilters(){s.q='';s.district='';s.tag='';s.fav=false;s.mapped=false;s.plimit=12;s.vlimit=12;$('search').value='';$('district').value='';}
 async function changeCity(id){
- if(!cities[id])return;const n=++s.cityLoad;resetStreet();s.city=id;s.manual=null;s.approx=false;$('approx').checked=false;$('origin').replaceChildren(new Option('选择本城店铺或地标…',''));s.data=null;s.sel=null;s.view=null;s.visible=[];s.films=[];resetFilters();s.sort='personal';$('sort').value=s.sort;
+ if(!cities[id])return;
+ s.locToken++;s.locHint='';$('locate').disabled=false;const n=++s.cityLoad;resetStreet();s.city=id;s.manual=null;s.approx=false;$('approx').checked=false;$('origin').replaceChildren(new Option('选择本城店铺或地标…',''));s.data=null;s.sel=null;s.view=null;s.visible=[];s.films=[];resetFilters();s.sort='personal';$('sort').value=s.sort;
  document.querySelectorAll('[data-city]').forEach(b=>pressed(b,b.dataset.city===id));$('channel').textContent='正在打开'+regionName()+'档案…';$('district').replaceChildren(new Option('全部区域',''));$('tags').replaceChildren();$('placecount').textContent='';$('videocount').textContent='';$('mapname').textContent=regionName()+'点位图';$('detail').replaceChildren();$('places').replaceChildren();$('videos').replaceChildren();$('coverage').textContent='';$('location').textContent=geoText();$('moreplaces').hidden=true;$('morevideos').hidden=true;drawPlot();
  try{
  const response=await fetch('./data/'+id+'.json');if(!response.ok)throw new Error('HTTP '+response.status);const d=await response.json();if(n!==s.cityLoad)return;if(!Array.isArray(d.places)||!Array.isArray(d.catalog))throw new Error('目录格式不正确');s.data=d;
@@ -214,13 +220,13 @@ async function toggleStreet(){if(!s.data)return;if(s.showStreet){resetStreet();d
 function zoom(factor){if(!s.data)return;if(streetMap){factor<1?streetMap.zoomIn():streetMap.zoomOut();return;}const b=s.mapUnit||bounds([]);const target=s.sel&&precise(s.sel)&&inside(s.sel,b)?s.sel:{lat:(b.south+b.north)/2,lon:(b.west+b.east)/2};s.view=centerOn(target,b,factor);drawPlot();}
 function locate(){
  if(!navigator.geolocation){s.locHint='当前浏览器不支持定位，可按城市或区域浏览。';$('location').textContent=s.locHint;return;}
- const token=++s.locToken;$('locate').disabled=true;$('location').textContent='正在请求设备位置…';navigator.geolocation.getCurrentPosition(pos=>{if(token!==s.locToken)return;s.manual=null;$('origin').value='';s.pos={lat:pos.coords.latitude,lon:pos.coords.longitude,accuracy:pos.coords.accuracy};s.locHint='';$('locate').disabled=false;$('locate').textContent='◎ 更新位置';s.sort='near';$('sort').value='near';s.sel=null;recompute();},error=>{if(token!==s.locToken)return;$('locate').disabled=false;s.locHint=error.code===1?'未获得定位权限，可手选本城出发点。':error.code===3?'定位超时，请重试或按区域浏览。':'未取得当前位置，可继续按区域浏览。';$('location').textContent=geoText();if(!origin()&&s.sort==='near'){s.sort='personal';$('sort').value='personal';recompute();}},{enableHighAccuracy:false,timeout:9500,maximumAge:120000});
+ const token=++s.locToken;$('locate').disabled=true;$('location').textContent='正在请求设备位置…';navigator.geolocation.getCurrentPosition(pos=>{if(token!==s.locToken)return;s.manual=null;$('origin').value='';s.pos={lat:pos.coords.latitude,lon:pos.coords.longitude,accuracy:pos.coords.accuracy};s.locHint='';$('locate').disabled=false;$('locate').textContent='◎ 更新位置';sortAfterOriginChange();s.sel=null;recompute();},error=>{if(token!==s.locToken)return;$('locate').disabled=false;s.locHint=error.code===1?'未获得定位权限，可手选本城出发点。':error.code===3?'定位超时，请重试或按区域浏览。':'未取得当前位置，可继续按区域浏览。';$('location').textContent=geoText();if(!origin()&&s.sort==='near'){s.sort='personal';$('sort').value='personal';recompute();}},{enableHighAccuracy:false,timeout:9500,maximumAge:120000});
 }
 document.querySelectorAll('[data-city]').forEach(b=>b.onclick=()=>{
  const id=b.dataset.city,url=new URL(location.href);url.searchParams.set('city',id);
  history.replaceState(null,'',url);changeCity(id);
 });
-$('search').oninput=e=>{s.q=e.target.value;s.plimit=s.vlimit=12;recompute();};$('district').onchange=e=>{s.district=e.target.value;s.plimit=s.vlimit=12;recompute();};$('sort').onchange=e=>{if(e.target.value==='near'&&!origin()){e.target.value=s.sort;locate();return;}s.sort=e.target.value;s.sel=null;recompute();};
+$('search').oninput=e=>{s.q=e.target.value;s.plimit=s.vlimit=12;recompute();};$('district').onchange=e=>{s.district=e.target.value;s.plimit=s.vlimit=12;recompute();};$('sort').onchange=e=>{if(e.target.value==='near'&&!origin()){e.target.value=s.sort;locate();return;}s.sort=e.target.value;s.locHint='';s.sel=null;recompute();};
 $('onlymap').onclick=()=>{s.mapped=!s.mapped;recompute();};$('onlyfav').onclick=()=>{s.fav=!s.fav;recompute();};$('moreplaces').onclick=()=>{s.plimit+=24;renderCards();};$('morevideos').onclick=()=>{s.vlimit+=24;renderFilms();};$('locate').onclick=locate;$('online').onclick=toggleStreet;$('zoomin').onclick=()=>zoom(.5);$('zoomout').onclick=()=>zoom(2);$('resetview').onclick=()=>{s.view=null;drawMap(true);};
 window.addEventListener('food-atlas:show-place',event=>{
  const d=event.detail;if(!d||!s.data||![s.city,regionName()].includes(d.city))return;
