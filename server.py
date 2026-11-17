@@ -3,6 +3,7 @@
 import argparse
 from datetime import date, datetime
 from functools import partial
+from http.client import HTTPConnection, HTTPException
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import mimetypes
@@ -12,10 +13,12 @@ import re
 import tempfile
 import threading
 from urllib.parse import urlsplit
+import webbrowser
 
 
 ROOT = Path(__file__).resolve().parent
 HOST, PORT = "127.0.0.1", 8794
+APP_ID = "food-up-map"
 ORIGIN = f"http://{HOST}:{PORT}"
 DEST = ROOT / ".local" / "fuzhou-catalog.json"
 MAX_BYTES = 4 * 1024 * 1024
@@ -109,7 +112,8 @@ class Handler(BaseHTTPRequestHandler):
             return self.message(403, "仅限本机地址。")
         path = urlsplit(self.path).path
         if path == "/health":
-            return self.message(200, "ok")
+            return self.respond(200, json.dumps({"appId": APP_ID, "message": "ok"}).encode(),
+                                "application/json; charset=utf-8")
         if path == "/capture" and self.import_enabled:
             return self.respond(200, CAPTURE.encode(), "text/html; charset=utf-8")
         if path not in STATIC:
@@ -170,13 +174,39 @@ class Handler(BaseHTTPRequestHandler):
         self.message(201, f"已保存 {len(rows)} 条公开视频元数据。")
 
 
+def our_server_is_running():
+    http = HTTPConnection(HOST, PORT, timeout=2)
+    try:
+        http.request("GET", "/health")
+        response = http.getresponse()
+        return response.status == 200 and json.loads(response.read(512)).get("appId") == APP_ID
+    except (OSError, HTTPException, ValueError, AttributeError):
+        return False
+    finally:
+        http.close()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--catalog-import", action="store_true", help="enable one-time localhost catalog import")
+    parser.add_argument("--open", action="store_true", help="open the map in your default browser")
     options = parser.parse_args()
-    with ThreadingHTTPServer((HOST, PORT), partial(Handler, import_enabled=options.catalog_import)) as server:
+    if options.open and not options.catalog_import and our_server_is_running():
+        webbrowser.open(ORIGIN + "/")
+        return
+    try:
+        server = ThreadingHTTPServer((HOST, PORT), partial(Handler, import_enabled=options.catalog_import))
+    except OSError as exc:
+        if options.open and not options.catalog_import and our_server_is_running():
+            webbrowser.open(ORIGIN + "/")
+            return
+        raise SystemExit(f"Cannot start Food Up Map at {ORIGIN}: {exc}") from exc
+    with server:
         server.import_lock = threading.Lock()
         print(ORIGIN + ("/capture" if options.catalog_import else "/"), flush=True)
+        if options.open:
+            # The server is already bound and listening before the browser gets the URL.
+            threading.Thread(target=webbrowser.open, args=(ORIGIN + "/",), daemon=True).start()
         server.serve_forever()
 
 
