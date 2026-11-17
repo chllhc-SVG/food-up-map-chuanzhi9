@@ -24,7 +24,8 @@ DEST = ROOT / ".local" / "fuzhou-catalog.json"
 MAX_BYTES = 4 * 1024 * 1024
 STATIC = {
     "/": "index.html", "/index.html": "index.html", "/app.js": "app.js",
-    "/styles.css": "styles.css", "/note.js": "note.js", "/data/wuhan.json": "data/wuhan.json",
+    "/styles.css": "styles.css", "/note.js": "note.js", "/geography.js": "geography.js",
+    "/data/wuhan.json": "data/wuhan.json",
     "/data/fuzhou.json": "data/fuzhou.json",
 }
 for name in ("leaflet.js", "leaflet.css", "leaflet.js.map", "LICENSE", "SOURCE.txt",

@@ -35,9 +35,14 @@ function distText(p){
  return label+(v<1?(Math.round(v*1000/10)*10)+' 米':v.toFixed(v<20?1:0)+' 公里');
 }
 function textPlace(p){return norm([p.name,p.address,p.district,...p.videos.map(v=>v.title)].join(' '));}
-const cautionTitle=v=>/避雷|踩雷|劝退|不推荐|难吃|翻车|失望|不值这个价|不会再[来去]|再也不[来去]/u.test(String(v||''));
+function videoCaution(video) {
+ if(video.stance==='historical_closure') return '原片提到停业，当前状态请复核';
+ if(video.stance==='negative') return '作者在该期表达保留意见';
+ const title=String(video.title||'').replace(/(?:包不会|不会|没有|没|不容易|避免)踩雷/g,'');
+ return /踩雷篇|踩雷了|我踩雷|大踩雷|不推荐|太难吃|再也不[来去]|劝退|失望/u.test(title)?'标题提示有保留意见':'';
+}
 function rankPlace(p,words){
- const neutral=p.videos.filter(v=>!cautionTitle(v.title));const caution=p.videos.length>0&&!neutral.length;
+ const neutral=p.videos.filter(v=>!videoCaution(v));const caution=p.videos.length>0&&!neutral.length;
  const allowed=norm([p.name,p.district,p.address,...neutral.map(v=>v.title)].join(' '));
  const hits=[...new Set(words)].filter(w=>allowed.includes(w));const v=distance(p);
  const geo=Number.isFinite(v)&&precise(p)&&s.manual?.precision!=='area'?(v<=1?5:v<=3?3:v<=8?2:v<=15?1:0):0;
@@ -69,7 +74,8 @@ async function changeCity(id){
  document.querySelectorAll('[data-city]').forEach(b=>pressed(b,b.dataset.city===id));$('channel').textContent='正在打开'+regionName()+'档案…';$('district').replaceChildren(new Option('全部区域',''));$('tags').replaceChildren();$('placecount').textContent='';$('videocount').textContent='';$('mapname').textContent=regionName()+'点位图';$('detail').replaceChildren();$('places').replaceChildren();$('videos').replaceChildren();$('coverage').textContent='';$('location').textContent=geoText();$('moreplaces').hidden=true;$('morevideos').hidden=true;drawPlot();
  try{
  const response=await fetch('./data/'+id+'.json');if(!response.ok)throw new Error('HTTP '+response.status);const d=await response.json();if(n!==s.cityLoad)return;if(!Array.isArray(d.places)||!Array.isArray(d.catalog))throw new Error('目录格式不正确');s.data=d;
- s.links=new Map();d.places.forEach((p,i)=>{p._i=i;p.videos=Array.isArray(p.videos)?p.videos:[];p._text=textPlace(p);for(const v of p.videos){if(!s.links.has(v.bvid))s.links.set(v.bvid,new Set());s.links.get(v.bvid).add(p);}});
+ const catalogById=new Map(d.catalog.map(video=>[video.bvid,video]));
+ s.links=new Map();d.places.forEach((p,i)=>{p._i=i;p.videos=(p.videos||[]).map(video=>catalogById.get(video.bvid)||video);p._text=textPlace(p);for(const v of p.videos){if(!s.links.has(v.bvid))s.links.set(v.bvid,new Set());s.links.get(v.bvid).add(p);}});
  for(const p of d.places.filter(hasPoint).sort((a,b)=>Number(!precise(a))-Number(!precise(b))||a.name.localeCompare(b.name,'zh-CN')))$('origin').add(new Option(p.name+' · '+(precision[p.precision]||'参考点'),String(p._i)));
  const creator=d.up?.name||'作者';$('channel').replaceChildren(tag('span','','探店 UP 主'),link(creator+' ↗',d.up?.url));for(const item of [...new Set(d.places.map(p=>p.district).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'zh-CN')))$('district').add(new Option(item,item));
  const cv=d.coverage||{},day=cv.snapshotDate||cv.asOf;
@@ -125,6 +131,7 @@ function renderDetail(){const el=$('detail'),p=s.sel;el.replaceChildren();if(!p)
 }
 function renderFilms(){const el=$('videos');el.replaceChildren();for(const v of s.films.slice(0,s.vlimit)){
  const card=tag('article','film'),h=tag('h3');h.append(link(v.title+' ↗',v.url));const date=String(v.published??'').slice(0,10);card.append(tag('span','meta',[date,v.bvid].filter(Boolean).join(' / ')),h);
+ const advisory=videoCaution(v);if(advisory)card.append(tag('span','meta',advisory));
  const related=[...(s.links.get(v.bvid)||[])];const row=tag('div','related');for(const p of related)row.append(btn(p.name+' ↗',()=>choose(p,true)));if(!related.length)row.append(tag('span','meta','作者投稿 · 未纳入本城店铺'));card.append(row);el.append(card);}
  if(!s.films.length)message(el,'当前条件下没有匹配的视频。');$('morevideos').hidden=s.vlimit>=s.films.length;
 }
@@ -136,10 +143,42 @@ function bounds(points){
 function inside(p,b){return p.lon>=b.west&&p.lon<=b.east&&p.lat>=b.south&&p.lat<=b.north;}
 function centerOn(p,b,factor){const w=Math.max(.0015,Math.min(40,(b.east-b.west)*factor))/2,h=Math.max(.001,Math.min(25,(b.north-b.south)*factor))/2;return {west:p.lon-w,east:p.lon+w,south:p.lat-h,north:p.lat+h};}
 function svg(name,attrs,text){const el=document.createElementNS('http://www.w3.org/2000/svg',name);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);if(text!==undefined)el.textContent=text;return el;}
+function addHydrography(plot,b,x,y,points){
+ const layers=window.FOOD_ATLAS_RIVERS?.[s.city]||[];
+ if(s.city==='wuhan'&&b.east-b.west<.12)return false;
+ const clip=svg('clipPath',{id:'water-clip'});clip.append(svg('rect',{x:12,y:9,width:616,height:304}));const defs=svg('defs',{});defs.append(clip);plot.append(defs);
+ const group=svg('g',{'clip-path':'url(#water-clip)','pointer-events':'none','aria-label':'公开来源的河流中心线'}),labels=[];
+ for(const layer of layers){
+  const coords=layer.lines.map(line=>line.map(([lon,lat])=>[x(lon),y(lat)]));
+  const path=coords.map(line=>line.map(([px,py],i)=>(i?'L':'M')+px.toFixed(1)+' '+py.toFixed(1)).join(' ')).join(' ');
+  const w=layer.weight===1?5.5:layer.weight===2?3.5:1.8;
+  group.append(svg('path',{class:'river-line',d:path,stroke:'#a7c8c6','stroke-width':w+1.8,'stroke-linecap':'round','stroke-linejoin':'round',fill:'none'}),svg('path',{d:path,stroke:layer.weight===3?'#95b9b7':'#85b3b3','stroke-width':w,'stroke-linecap':'round','stroke-linejoin':'round',fill:'none'}));
+  const candidates=[];const labelWidth=layer.name.length*10;
+  for(const line of coords){for(let i=1;i<line.length;i++){
+   const [a1,a2]=line[i-1],[b1,b2]=line[i];for(const t of [0,.25,.5,.75]){const px=a1+(b1-a1)*t,py=a2+(b2-a2)*t-6;if(px<30+labelWidth/2||px>606-labelWidth/2||py<30||py>265)continue;
+    if(labels.some(v=>Math.abs(v[0]-px)<(v[2]+labelWidth)/2+10&&Math.abs(v[1]-py)<16))continue;
+    let gap=40;for(const place of points){const xx=x(place.lon),yy=y(place.lat);gap=Math.min(gap,Math.hypot((xx-px)*.6,yy-py));}
+    candidates.push([gap-.028*Math.abs(px-315)-.018*Math.abs(py-150),px,py]);
+   }
+  }}
+  if(candidates.length){const [,px,py]=candidates.sort((a,b)=>b[0]-a[0])[0];labels.push([px,py,labelWidth,layer.name]);}
+ }
+ for(const [px,py,,name] of labels)group.append(svg('text',{class:'river-label',x:px,y:py,'text-anchor':'middle','font-size':12,'font-weight':650,fill:'#33696a',stroke:'#e7eddd','stroke-width':3,'paint-order':'stroke'},name));
+ plot.append(group);return layers.length>0;
+}
+function hydroCredit(hasLayer){
+ const label=origin()?'蓝圈：出发点 · ':'';
+ const n=$('mapnote');n.replaceChildren(document.createTextNode(label+'离线图 · '));
+ if(s.city==='wuhan'){if(!hasLayer)n.append(document.createTextNode('高倍视野隐藏概化河线 · '));n.append(link('Natural Earth','https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-rivers-lake-centerlines/'));}
+ else n.append(link('© OpenStreetMap contributors','https://www.openstreetmap.org/copyright'),document.createTextNode(' · '),link('ODbL','https://opendatacommons.org/licenses/odbl/1-0/'));
+}
 function drawPlot(){
- const plot=$('plot'),points=s.visible.filter(hasPoint);plot.replaceChildren();let b=s.view||bounds(points);s.mapUnit=b;const x=v=>22+(v-b.west)/(b.east-b.west)*594,y=v=>310-(v-b.south)/(b.north-b.south)*285;
+ const plot=$('plot'),points=s.visible.filter(hasPoint);plot.replaceChildren();let included=points;
+ if(s.city==='fuzhou'&&s.data&&points.length&&s.visible.length===s.data.places.length)included=[...points,{lon:119.22,lat:26.008},{lon:119.365,lat:26.102}];
+ const b=s.view||bounds(included);s.mapUnit=b;const x=v=>22+(v-b.west)/(b.east-b.west)*594,y=v=>310-(v-b.south)/(b.north-b.south)*285;
  for(let i=0;i<7;i++){const cx=22+i*99;plot.append(svg('line',{x1:cx,y1:15,x2:cx,y2:315,stroke:'#c6d2bd','stroke-dasharray':'2 4'}));if(i%2===0)plot.append(svg('text',{x:cx===616?570:cx,y:328,fill:'#5f6b5e','font-size':10},(b.west+(b.east-b.west)*i/6).toFixed(3)+'° E'));}
  for(let i=0;i<5;i++){const cy=25+i*71;plot.append(svg('line',{x1:18,y1:cy,x2:616,y2:cy,stroke:'#c6d2bd','stroke-dasharray':'2 4'}));}
+ const hydro=addHydrography(plot,b,x,y,points);
  plot.append(svg('text',{x:607,y:19,fill:'#526b54','text-anchor':'end','font-size':11},'↑ 北'));
  const midLat=(b.south+b.north)/2,kmPerPixel=(b.east-b.west)*111.32*Math.cos(radians(midLat))/594;
  const scale=[.05,.1,.25,.5,1,2,5,10,20,50,100,200,500].filter(d=>d/kmPerPixel<=85).at(-1);
@@ -154,7 +193,7 @@ function drawPlot(){
  function mark(arr,p,active){const xx=x(p.lon),yy=y(p.lat),cluster=arr.length>1;const g=svg('g',{class:'marker',tabindex:0,role:'button','aria-label':cluster?arr.length+' 家店铺，放大查看':p.name,transform:'translate('+xx+','+yy+')'});g.append(svg('title',{},cluster?arr.map(i=>i.name).slice(0,5).join('、'):p.name));g.append(svg('circle',{r:active?10:cluster?8:5.5,fill:active?'#a83b20':cluster?'#344f3c':palette[p.precision],stroke:active?'#fff5c8':'#f7f6e6','stroke-width':active?2.5:1.5}));if(cluster)g.append(svg('text',{'text-anchor':'middle',y:3,fill:'white','font-size':8},arr.length));else if(active)g.append(svg('circle',{r:2.5,fill:'white'}));
  const hit=()=>{if(cluster){s.view=centerOn(p,b,.48);choose(p,false,arr);}else choose(p);};g.addEventListener('click',hit);g.addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();hit();}});plot.append(g);}
  let activeBin=null;for(const arr of bins.values()){if(arr.includes(s.sel))activeBin=arr;else mark(arr,arr[0],false);}if(activeBin)mark(activeBin,s.sel,true);const ref=origin();if(ref&&inside(ref,b)){const c=svg('circle',{cx:x(ref.lon),cy:y(ref.lat),r:12,fill:'none',stroke:'#286e98','stroke-width':2,'pointer-events':'none'});c.append(svg('title',{},'出发点：'+originName()));plot.append(c);}
- $('mapempty').hidden=!!points.length&&!s.emptyNote;$('mapempty').textContent=s.emptyNote||'当前筛选没有可绘制的坐标。';$('mapnote').textContent=(origin()?'蓝圈：出发点 · ':'')+'离线坐标图 · WGS84';
+ $('mapempty').hidden=!!points.length&&!s.emptyNote;$('mapempty').textContent=s.emptyNote||'当前筛选没有可绘制的坐标。';hydroCredit(hydro);
 }
 function drawMap(fit=true){if(s.showStreet&&streetMap){markerLayer.clearLayers();const pts=s.visible.filter(hasPoint);for(const p of pts){const selected=p===s.sel;const m=window.L.circleMarker([p.lat,p.lon],{radius:selected?9:5,color:'#fff9df',weight:selected?3:1,fillColor:selected?'#a83b20':palette[p.precision],fillOpacity:.95}).addTo(markerLayer);m.bindTooltip(tag('span','',p.name));m.on('click',()=>choose(p));}if(origin())window.L.circleMarker([origin().lat,origin().lon],{radius:12,color:'#286e98',weight:2,fill:false,interactive:false}).addTo(markerLayer);if(fit){if(pts.length>1)streetMap.fitBounds(pts.map(p=>[p.lat,p.lon]),{padding:[16,16],maxZoom:15});else streetMap.setView(pts.length?[pts[0].lat,pts[0].lon]:[cities[s.city].lat,cities[s.city].lon],12);}$('mapempty').hidden=!!pts.length;$('mapempty').textContent='当前没有已核坐标。';$('mapnote').textContent='联网街道底图 · WGS84';}else drawPlot();}
 function loadLeaflet(){if(window.L)return Promise.resolve();if(!leafletPromise){leafletPromise=new Promise((resolve,reject)=>{if(!document.querySelector('link[data-leaflet]')){const l=tag('link');l.rel='stylesheet';l.href='./vendor/leaflet/leaflet.css';l.dataset.leaflet='';document.head.append(l);}const e=tag('script');e.src='./vendor/leaflet/leaflet.js';e.onload=resolve;e.onerror=()=>{leafletPromise=null;reject(new Error('地图组件不可用'));};document.head.append(e);});}return leafletPromise;}
