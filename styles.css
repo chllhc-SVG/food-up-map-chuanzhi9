@@ -3,3 +3,11 @@
 .group-choice{max-width:100%;color:var(--ink);background:var(--paper);border:0;border-radius:3px;padding:4px 5px}
 .origin-bar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:9px;color:var(--muted);font-size:12px}.origin-bar select{flex:none;max-width:min(330px,70vw);padding:5px 8px;background:#fffef8;border:1px solid var(--line);border-radius:3px}.approx-label{display:inline-flex;align-items:center;gap:3px}.origin-bar input{accent-color:var(--dark)}
 .reason{display:block;font-size:11px;color:#516849;line-height:1.5;margin-top:4px}
+.note-panel {margin:24px 0 42px;padding:18px 22px;border:1px solid #c8c7b3;border-radius:12px;background:#fcfaf3;color:#233c30;}
+.note-panel summary {font-weight:700;font-size:1.08rem;cursor:pointer;}
+.note-panel p,.note-panel li {line-height:1.65;}
+.note-panel form,.note-panel label {display:grid;gap:.4rem;}
+.note-panel form {max-width:48rem;gap:1rem;}
+.note-panel input,.note-panel textarea,.note-panel select {width:100%;box-sizing:border-box;padding:.65rem;border:1px solid #a3ad9b;border-radius:6px;background:#fffefa;color:inherit;font:inherit;}
+.note-panel button {width:fit-content;padding:.4rem .8rem;margin:.3rem .4rem .3rem 0;border:1px solid #47614d;border-radius:6px;color:#23402e;background:#f7f7eb;cursor:pointer;}
+.note-panel a {color:#38563b;}
