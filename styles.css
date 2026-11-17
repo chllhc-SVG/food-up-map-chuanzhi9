@@ -11,3 +11,5 @@
 .note-panel input,.note-panel textarea,.note-panel select {width:100%;box-sizing:border-box;padding:.65rem;border:1px solid #a3ad9b;border-radius:6px;background:#fffefa;color:inherit;font:inherit;}
 .note-panel button {width:fit-content;padding:.4rem .8rem;margin:.3rem .4rem .3rem 0;border:1px solid #47614d;border-radius:6px;color:#23402e;background:#f7f7eb;cursor:pointer;}
 .note-panel a {color:#38563b;}
+.city-buttons button[data-city] {text-align:left;line-height:1.25;padding:8px 17px;}
+.city-buttons button[data-city] small {display:block;font-size:.76rem;font-weight:400;line-height:1.5;white-space:nowrap;opacity:.86;}
