@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>美食UP主的榜单推荐——基于定位的个性化美食地图微工具 · 作品说明</title>
+<style>
+@page {size:A4 landscape;margin:0}*{box-sizing:border-box}html,body{padding:0;margin:0}body{font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;color:#182f27;background:#eee9dd;-webkit-print-color-adjust:exact;print-color-adjust:exact}section{position:relative;width:297mm;height:209.8mm;margin:0 auto;background:#fbf8ef;padding:12mm 15mm 14mm;break-after:page;overflow:hidden}section:last-child{break-after:auto}.top,.foot{display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:1px;font-weight:600;color:#52665a}.top{border-top:2px solid #244b3c;padding-top:7px;margin-bottom:30px}.top b{font-family:Arial,sans-serif;letter-spacing:2px;color:#a33e26}.foot{position:absolute;bottom:9mm;left:15mm;right:15mm;border-top:1px solid #abb9a7;padding-top:7px;font-size:10px}.foot span:last-child{font-family:Arial,sans-serif;letter-spacing:2px}h1,h2,h3,h4,p,figure,ul{margin:0}h1,h2,h3{font-family:"Noto Serif SC","SimSun",serif}h1{font-size:52px;line-height:1.35;font-weight:750;letter-spacing:-2px}h2{font-size:38px;line-height:1.22;font-weight:750;margin-bottom:12px;letter-spacing:-1.2px}h3{font-weight:750;font-size:23px;line-height:1.45;margin:0 0 8px}h4{font-size:17px;margin-bottom:6px}p,li,td{font-size:15px;line-height:1.68}.lead{font-size:17px;line-height:1.65;color:#46594e;max-width:940px}.body{margin-top:26px}.sm{font-size:13px;line-height:1.6;color:#506256}.tiny,figcaption{font-size:11px;line-height:1.55;color:#56695b}figcaption{margin-top:6px}.forest{color:#22543f}.rust{color:#aa452a}.code,code{font-family:Consolas,"Noto Sans SC",monospace}.code{display:block;white-space:pre-wrap;color:#fdf9ed;background:#233f34;padding:13px 16px;border-radius:3px;font-size:14px;line-height:1.65}code{font-size:.89em}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px}.wide-left{grid-template-columns:1.15fr .85fr}.wide-right{grid-template-columns:.83fr 1.17fr}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:23px}.rule{border-top:1px solid #a7b4a5;padding:14px 0 10px}.marker{color:#9b3e26;font:700 12px Arial,sans-serif;letter-spacing:1.9px;display:block;margin-bottom:8px}.inset{background:#edf0e4;border-left:4px solid #77917c;padding:17px 19px}.dark{background:#203f32;color:#f5f2e8;padding:20px 23px}.dark p,.dark .tiny,.dark .sm{color:#edf0e4}.imgbox{border:1px solid #c3ccbb;background:#f8f5eb}.imgbox img{display:block;width:100%;height:auto}.metrics{display:flex;gap:24px;align-items:flex-start}.metric{min-width:115px;flex:1;border-top:1px solid #b2bdab;padding-top:8px}.metric strong{display:block;font:600 42px/1.2 Georgia,serif;color:#27563e}.metric small{font-size:12px;color:#55655b}.tinycap{font:700 11px Arial,sans-serif;letter-spacing:1.9px;color:#607363}.rows>div{border-top:1px solid #bcc5b6;padding:11px 0;display:grid;grid-template-columns:118px 1fr;gap:12px}.rows b{color:#2c543e;font-size:15px}.rows p{font-size:14px}.cite{color:#2d6046;text-decoration:underline;text-underline-offset:2px}.cover{background:#203f32;color:#f8f4e8}.cover .top,.cover .foot{border-color:#a9bea8;color:#dfe6d8}.cover .top{margin-bottom:36px}.cover .top b{color:#e7ba86}.cover .ey{display:block;color:#e6be8d;font-family:Georgia,serif;font-size:14px;letter-spacing:2.3px;margin-bottom:13px}.cover .sub{font-size:23px;font-family:"Noto Serif SC","SimSun",serif;letter-spacing:0;margin:8px 0 19px}.cover .desc{font-size:16px;color:#e4e9db;max-width:820px}.cover .maps{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}.cover figure{min-width:0}.cover .mappic{height:204px;overflow:hidden;border:1px solid #abc2a8;position:relative;background:#e7ead9}.cover .mappic img{width:100%;height:auto;position:relative;top:-29px}.cover figcaption{color:#e0e7d6;display:flex;justify-content:space-between;letter-spacing:.2px}.cover .foot{color:#d4dfd2}.cover .mappic .dot{}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th{text-align:left;font-size:13px;letter-spacing:.3px;color:#3c5d49;background:#e3e9d9}th,td{border-bottom:1px solid #c1cbbc;padding:9px 12px}td{font-size:14px}.pair{grid-template-columns:1fr 1fr}.quote{font-family:"Noto Serif SC",serif;font-size:20px;line-height:1.7}.pill{display:inline-block;font-size:12px;border:1px solid #b4c1ad;color:#345840;padding:1px 8px;margin-right:4px}.space{margin-top:16px}.duo{display:grid;grid-template-columns:1fr 1fr;gap:18px}.duo article{padding:16px;background:#edf0e5}.duo article:nth-child(2){background:#f0e8d9}.step{display:flex;gap:12px;margin-bottom:17px}.step>i{flex:0 0 27px;height:27px;line-height:27px;border-radius:50%;background:#31553f;color:white;text-align:center;font-family:Georgia,serif;font-style:normal}.step h4{margin:0}.step p{font-size:14px}.graph{background:#e8eddf;padding:18px 22px}.node{padding:10px 0;border-bottom:1px solid #b4c3ae}.node:last-child{border-bottom:0}.bigscore{font:600 42px Georgia,serif;color:#935236}.tiles{display:flex;gap:2px;height:20px}.tiles i{display:block;height:100%}.legend{display:flex;gap:15px;font-size:12px;line-height:1.7}.legend em{display:inline-block;width:11px;height:11px;margin-right:4px}.sf{text-transform:uppercase}.spacer{height:14px}.symbol{font:600 25px Georgia,serif;color:#7f452a}.btnlink{font-weight:650;color:#20503a}.divider{height:1px;background:#bcc5b7;margin:15px 0}
+</style></head><body>
+
+<section class="cover">
+<div class="top"><span>第九届传智杯全国大学生数智创新与AI应用大赛</span><b>AI 创新应用挑战赛　／　作品说明</b></div>
+<span class="ey">CITY FOOD ATLAS　·　2026</span>
+<h1>美食UP主的榜单推荐</h1>
+<div class="sub">——基于定位的个性化美食地图微工具</div>
+<p class="desc">把探店视频放回城市地图。读者选定作者和出发点，查看附近哪些店有可靠地址，再回原片核对作者点了什么、具体怎么评价。</p>
+<div class="maps">
+<figure><div class="mappic"><img src="figures/map-fuzhou.png"></div><figcaption><b>福州　酷酷的珊文鱼</b><span>293 条投稿 · 36 处可绘位置</span></figcaption></figure>
+<figure><div class="mappic"><img src="figures/map-wuhan.png"></div><figcaption><b>武汉　员外的觅食人生</b><span>359 条投稿 · 312 处可绘位置</span></figcaption></figure>
+</div>
+<p style="color:#c8d6bf;font-size:10px;margin-top:7px">作品实机离线地图节选。福州水系 © OpenStreetMap contributors（ODbL）；武汉水系来自 Natural Earth。</p>
+<div class="foot"><span>视频目录快照　2026 年 11 月 17 日</span><span>FUZHOU　/　WUHAN　　01</span></div></section>
+
+<section><header class="top"><span>需求与使用场景</span><b>01　/　PROBLEM</b></header>
+<h2>从“想吃这家”到“我能去哪家”</h2>
+<p class="lead">一条视频能说明作者吃了什么，却未必给出分店地址。习惯收藏视频的人，临时找饭店时仍要逐条回想店名、区分分店，再打开地图。</p>
+<div class="grid2 wide-left body">
+<div><div class="rule"><span class="marker">用户原话 · 历史武汉项目</span><p class="quote">“通过地图可以方便查看地点远近，同时可以点击具体地点后进入相应的up主视频，方便查看测评。”</p></div>
+<div class="rows"><div><b>本地用餐</b><p>以设备位置或熟悉的店作起点，按远近查看去哪里方便，再按口味筛选。</p></div><div><b>异地出行</b><p>出发前即可在福州手选本地地标。设备在另一个城市时也能查看目的地周边。</p></div><div><b>回看探店</b><p>一个地点可以关联多期原片，也可以从一条视频返回其已核的多个店铺。</p></div></div>
+</div>
+<figure><div class="imgbox" style="width:92%;margin-left:auto"><img src="figures/wuhan-detail.png"></div><figcaption style="margin-left:8%">武汉实机截图。「三怪牛肉炒饭」的店铺详情保留两期不同的关联原片。</figcaption></figure></div>
+<div class="foot"><span>需求来源　武汉原项目对话、双城扩展需求与运行反馈</span><span>02</span></div></section>
+
+<section><header class="top"><span>交互设计</span><b>02　/　PRODUCT</b></header>
+<h2>一次附近探店的实际查询</h2>
+<p class="lead">打开首页选择福州，以米丝林作出发点，搜索“裕莲茶楼”。页面给出约 230 米的直线距离，并把终点标注为“地址参考”。</p>
+<div class="grid2 wide-left body"><div><figure><div class="imgbox"><img src="figures/tea-atlas.png"></div><figcaption>实机画面。蓝圈为手选起点，橙色点标记有证据的商场地址。</figcaption></figure><figure class="space"><div class="imgbox" style="max-width:370px"><img src="figures/tea-card.png"></div><figcaption>结果卡把距离精度和原片意见一起呈现。</figcaption></figure></div>
+<div><div class="step"><i>1</i><div><h4>选城市和作者</h4><p>福州与武汉分别对应各自 UP 主；城市可直接链接，刷新后保留选择。</p></div></div><div class="step"><i>2</i><div><h4>选起点，确认距离含义</h4><p>如果拒绝设备定位，可以手选店铺。片区参考距离需额外勾选，公里数用于比较直线远近。</p></div></div><div class="step"><i>3</i><div><h4>核实这次拍的是哪家店</h4><p>首店视频可关联东百中心 C 馆。同品牌第二期缺少分店证据，只保留在作者目录。</p><p class="tiny space"><a class="cite" href="https://www.bilibili.com/video/BV1v4VpzgE5h/">首店原片</a>　<a class="cite" href="https://www.bilibili.com/video/BV1afNJzGE9z/">同品牌第二期</a>　<a class="cite" href="https://www.gl.gov.cn/xjwz/ztzl/fgfggyhyshjzt/jrbffw/202505/t20250514_5018504.htm">首店门牌依据</a></p></div></div></div></div>
+<div class="foot"><span>取数口径　米丝林商户点至东百中心 C 馆建筑参考位置</span><span>03</span></div></section>
+
+<section><header class="top"><span>数据设计与来源</span><b>03　/　EVIDENCE</b></header>
+<h2>一条视频可以核实到什么程度？</h2>
+<p class="lead">作者公开投稿构成视频目录。门店另按城市、店名、分店和地址证据核实。目录中的异地探访、生活记录与不明店址都有独立的去处。</p>
+<div class="grid2 wide-left body"><div><table><thead><tr><th>快照口径</th><th>福州</th><th>武汉</th></tr></thead><tbody>
+<tr><td>已核投稿页数</td><td>8</td><td>9</td></tr><tr><td>目录视频（BV 去重）</td><td>293</td><td>359，含 1 条合作稿</td></tr><tr><td>关联本地条目的不同视频</td><td>115</td><td>306</td></tr><tr><td>本地店铺或品牌条目</td><td>115</td><td>326</td></tr><tr><td>商户点 / 同址或门牌参考</td><td>32 / 1</td><td>203 / 42</td></tr><tr><td>片区参考 / 待定位</td><td>3 / 79</td><td>67 / 14</td></tr></tbody></table>
+<p class="sm space">武汉沿用历史项目的 326 个地点。11 月 17 日核对全部 359 条投稿，新出现的 17 条先进入视频目录。</p></div>
+<div><div class="inset"><h3>福州复核实例</h3><p>293 个原片简介逐条核对后，115 个视频与 115 个本地条目形成 123 组关联。去重视频数、店铺数和关联数分别统计。</p></div><div class="rule space"><h4>如何处理信息不足</h4><p>保留原片而留空经纬度。福州有 79 个条目暂未定位；明确负评的 10 期、提到历史停业的 2 期只保留目录记录。</p></div></div></div>
+<div class="foot"><span>数据依据　<a class="cite" href="https://space.bilibili.com/3493128128432841/upload/video">福州作者投稿页</a>　·　<a class="cite" href="https://space.bilibili.com/9433848/upload/video">武汉作者投稿页</a>　·　docs/fuzhou-sources.md</span><span>04</span></div></section>
+
+<section><header class="top"><span>推荐方法与适用边界</span><b>04　/　RANKING</b></header>
+<h2>为什么这家店排在前面？</h2>
+<p class="lead">先按所选城市、关键词、区域和收藏筛选，再对入选店铺计算分数。软件展示命中口味、距离或可查点位等理由，作者的体验可由原片核对。</p>
+<div class="grid2 body"><div><table><thead><tr><th>得分项</th><th>程序采用的规则</th></tr></thead><tbody><tr><td>词项</td><td>每个不同命中词 +4，最多两个</td></tr><tr><td>直线距离</td><td>≤1 / 3 / 8 / 15 km 分别 +5 / +3 / +2 / +1</td></tr><tr><td>位置证据</td><td>商户点 +3，建筑或门牌 +2，片区 +1</td></tr><tr><td>原片可回看</td><td>至少有一期无警示关联原片 +1</td></tr><tr><td>评价提示</td><td>全部关联原片都是负面或停业提示时 −8</td></tr></tbody></table>
+<p class="sm space">关键词匹配店名、地址、区域以及可归到单店的原片标题。全部分数相同时按快照顺序展示。</p></div>
+<div><div class="dark"><span class="marker" style="color:#e5b18c">算例 · 为我推荐</span><h3>米丝林 → 裕莲茶楼</h3><p>搜索词“裕莲茶楼”命中 +4；约 230 米 +5；建筑地址参考 +2；单店关联原片评价有褒有贬，不加原片分。</p><p class="space" style="font:600 35px Georgia,serif">4 + 5 + 2 = 11</p></div>
+<div class="rule space"><h4>距离如何计算</h4><p>坐标统一为 WGS84，使用 Haversine 大圆距离。片区起点或片区终点不参加距离加分，勾选后可查看参考距离。真实步行时间还受道路和过江条件影响。</p></div></div></div>
+<div class="foot"><span>可复算实现　app.js 中的 km、distance、rankPlace 和 recompute</span><span>05</span></div></section><section><header class="top"><span>系统实现</span><b>05　/　ARCHITECTURE</b></header>
+<h2>把来源复核放在离线运行之前</h2>
+<p class="lead">联网核实是资料准备步骤。比赛演示与日常查询共用已校验的城市快照，浏览器可直接完成搜索、定位、排序和收藏。</p>
+<div class="grid2 body"><div class="graph"><div class="node"><span class="marker">01　原始依据</span><h4>作者投稿页、原视频、门店与坐标来源</h4><p class="sm">保留 BV、日期、必要的店名和依据链接。取数时把作者投稿与作者点赞区分开。</p></div><div class="node"><span class="marker">02　生成城市快照</span><h4>导入脚本 → data/fuzhou.json 或 wuhan.json</h4><p class="sm">检验 BV 唯一性、门店关联、地理范围与精度。只有商场建筑或流动摊片区依据时，单独标明相应等级。</p></div><div class="node"><span class="marker">03　浏览器交互</span><h4>本机 HTTP 服务 → 搜索 / 推荐 / 地图</h4><p class="sm">原生 HTML、CSS、JavaScript 和 Python 标准库。应用启动与本地核心流程无需模型密钥。</p></div></div>
+<div><div class="rule"><h3>坐标转换有出处</h3><p>门店的 GCJ-02 或百度 BD09MC 坐标换算到近似 WGS84。福州的补充商户点保留商户 UID 与原始坐标，以便事后复核。</p></div>
+<div class="rule"><h3>位置和收藏各自有边界</h3><p>设备定位按需请求，仅在当前页面内存计算。收藏和个人复核记录按城市保存在浏览器，本地服务仅绑定 127.0.0.1。</p></div>
+<div class="rule"><h3>在线街道底图为可选项</h3><p>随包河流和店铺点可离线显示。主动打开街道底图后，请求的瓦片范围可能反映用户查看的区域。底图加载失败时恢复离线图。</p></div></div></div>
+<div class="foot"><span>实现入口　scripts/import_fuzhou.py　·　server.py　·　app.js　·　note.js</span><span>06</span></div></section>
+
+<section><header class="top"><span>Vibe Coding · 意图控制</span><b>06　/　HUMAN × AI</b></header>
+<h2>三次把“可用”落到具体验收条件</h2>
+<p class="lead">选手确定要解决的任务、指定作者并给出试用反馈。Codex 辅助实现、查找反例及执行测试。下表保留选手原话的短摘，工程动作另列。</p>
+<div class="body"><table><thead><tr><th style="width:16%">核心功能</th><th style="width:29%">选手指令或选择（摘录）</th><th style="width:32%">迭代中遇到的具体问题与处理</th><th>可复验产物</th></tr></thead><tbody>
+<tr><td><b>区域与作者目录</b></td><td>“选择的UP主列表以区域划分，原有的是武汉，并列另外加一个福州的UP主页”</td><td>匿名目录服务受限，主页又混有最近点赞。改从指定作者的“投稿”页读取；福州八页的 293 个 BV 去重后与主页计数相符。</td><td>切换两座城市，作者名、目录和门店同步变化。<br><code>8ff8ceb → 6767def</code></td></tr>
+<tr><td><b>定位与距离</b></td><td>“通过地图可以方便查看地点远近”<br><span class="sm">原武汉项目需求</span></td><td>设备可能在外地或未获定位权限。引入手选本城起点，区分门店、建筑和片区；试用者选择“保留现状，在切换时明确提示”。</td><td>手选起点后提示已切换到距离排序；改回“为我推荐”后提示清除。<br><code>fca9c4d</code></td></tr>
+<tr><td><b>快照与默认入口</b></td><td>“武汉的视频快照时间也改为11月17日，同时把福州放在第一个，武汉放在第二个。”</td><td>反馈前武汉仍显示 9 月 22 日。重新比对九页的 BV、标题、日期，补录 17 条；默认城市和按钮顺序一起更新。</td><td>打开首页先看到福州。武汉页显示 359 条视频和新快照日期。<br><code>887ef9e</code></td></tr>
+</tbody></table></div>
+<div class="inset space"><p>原始武汉采集成果作为输入复用。本次新增双城目录、福州证据核验和本地排序界面，并按选手反馈更新武汉目录。运行时的榜单由可检查的规则生成。</p></div>
+<div class="foot"><span>过程证据　docs/prompts/核心对话导出.json　·　docs/prompts/迭代索引.md　·　Git 版本差异</span><span>07</span></div></section>
+
+<section><header class="top"><span>Vibe Coding · 真实修订</span><b>07　/　ITERATION</b></header>
+<h2>一张截图推动了数据修订</h2>
+<p class="lead">选手指出武汉日期和首屏顺序。把日期作为查询范围来理解，便产生两项可验证的改动：从作者目录补进新增稿件，并由实际按钮顺序决定默认城市。</p>
+<div class="duo body"><article><span class="marker">反馈前 · 选手提交的截图</span><div style="height:111px;display:flex;align-items:center"><img src="figures/feedback-before.png" style="width:100%;max-height:105px;object-fit:contain"></div><p class="sm">武汉在左且已选中，视频快照为 2026-09-22。该历史目录含 342 条视频。</p></article><article><span class="marker">反馈后 · 武汉直达页面</span><div style="height:111px;display:flex;align-items:center"><img src="figures/feedback-after.png" style="width:100%"></div><p class="sm">福州移到左侧；通过武汉直达链接进入时仍选中武汉。武汉快照显示 2026-11-17。</p></article></div>
+<div class="grid2 space"><div class="rule"><h3>把“改日期”拆成核验步骤</h3><p>将九页 359 条记录逐一与项目目录比对。旧 342 条的 BV、标题和发布日期都可对齐；最早一条新增投稿发布于 9 月 24 日，最新一条发布于 11 月 14 日。</p></div><div class="rule"><h3>保留数据更新的范围</h3><p>新收录的 17 条可从武汉视频目录回看，店址待核。选手对这批投稿的后续展示选择“沿用现有展示”。原有 326 处地点保持 9 月的核验口径。</p></div></div>
+<div class="foot"><span>依据　docs/wuhan-catalog-update.json　·　tests/check_notes.py　·　<a class="cite" href="https://www.bilibili.com/video/BV1sxsG63EqW/">最新原片</a></span><span>08</span></div></section>
+
+<section><header class="top"><span>Vibe Coding · 接受与拒绝</span><b>08　/　DECISIONS</b></header>
+<h2>定位成功以后，榜单应当怎么排？</h2>
+<p class="lead">手选起点或同意设备定位会优先显示最近地点。原界面能更改排序，却没有解释为什么顺序发生了变化。选手对 AI 提出的不同改法作了选择。</p>
+<div class="grid2 body"><div><div class="rule"><span class="marker">AI 提问 · 对话原文节选</span><p class="quote">“目前点「使用我的位置」会自动从「为我推荐」切换到「距出发点最近」，距离会压过口味。作为参赛者，你希望怎么改？”</p></div><div class="inset space"><h4>选手实际选择</h4><p class="quote">“保留现状，在切换时明确提示”</p></div></div>
+<div><div class="rule"><h3>把选择转成一条会失败的检查</h3><p>在旧实现上选择起点，状态栏只显示已手选，要求包含排序切换提示的验收失败。修改后，在排序自动改变时解释原因；使用者切回“为我推荐”后，旧提示清除。</p></div><div class="rule"><h4>另一项明确取舍</h4><p>针对武汉 17 条新片，AI 给出“可单独筛选”“只加待核提示”“沿用现有展示”三个选项。选手选择第三项，最终沿用未关联视频的目录提示。</p></div></div></div>
+<figure class="space"><div class="imgbox"><img src="figures/ranking-feedback.png"></div><figcaption>实机状态栏逐字提示已切换排序及切回路径。实现与测试提交 fca9c4d；原始问答见 docs/prompts/核心对话导出.json。</figcaption></figure>
+<div class="foot"><span>评审复核　git show fca9c4d　·　python tests/check_locations.py</span><span>09</span></div></section><section><header class="top"><span>工程验收与反例</span><b>09　/　VALIDATION</b></header>
+<h2>用会误导用户的例子做回归</h2>
+<p class="lead">验收同时覆盖数据与操作。数据检查使用 Python 标准库，交互检查从真实 Edge 的干净浏览器上下文启动。</p>
+<div class="grid2 body"><div><div class="rule"><h3>合辑会不会把咖啡店变成汉堡店？</h3><p>一条视频同时介绍厚千禧汉堡与 CARPORT 咖啡。搜“汉堡”可找回原片；店铺结果排除仅因同片出现的咖啡店。与历史闭店有关的原片仍能从目录查到。</p></div><figure class="space"><div class="imgbox" style="max-width:370px"><img src="figures/closed-film.png"></div><figcaption>实机检索结果保留原片闭店语境。<a class="cite" href="https://www.bilibili.com/video/BV1ThGHzREk5/">回看该期视频</a></figcaption></figure></div><div><div class="rule"><h3>拒绝定位后，看什么距离？</h3><p>模拟浏览器拒绝定位，页面提示手选起点。选米丝林后自身为 0 米；裕莲茶楼为建筑参考约 230 米；银河隧道只有勾选片区估距后才展示距离。</p></div><div class="rule"><h3>如何防止个人线索污染地图？</h3><p>只把快照中关联到同一 BV 的地点列为已关联。用户输入的待核线索保留在其浏览器；可复查、删除，不回写两城的发布文件。</p></div><div class="inset space"><p class="sm"><b>验收范围</b>　覆盖 BV 唯一性、四级位置约束、福州快照离线重建、收藏刷新与跨城隔离。在预装 Git、Edge 和 Playwright 的本机，从干净目录跑通指定版本用时 2.154 秒（自动化耗时，不含环境安装与人工操作）。完整记录见 docs/复现验收.md。</p></div></div></div>
+<div class="foot"><span>验收入口　tests/test_data.py　·　tests/check_notes.py　·　tests/check_locations.py</span><span>10</span></div></section>
+
+<section><header class="top"><span>运行、复现与权益</span><b>10　/　REPRODUCTION</b></header>
+<h2>用同一份源码复核演示</h2>
+<p class="lead">在装有 Python 3.10 或更高版本的电脑解压源码，打开项目根目录。系统浏览器与随包文件即可完成核心演示。</p>
+<div class="grid2 body"><div><div class="step"><i>1</i><div><h4>启动并打开首页</h4><p>Windows 双击“启动.cmd”，或运行下列命令。浏览器访问 <code>http://127.0.0.1:8794/</code>。</p></div></div>
+<span class="code">python server.py</span><div class="step space"><i>2</i><div><h4>复验福州示例并切换武汉</h4><p>福州选米丝林、搜裕莲茶楼；清空后搜厚千禧汉堡查看历史提示。切换武汉检查快照日期，再搜三怪牛肉炒饭。</p></div></div>
+<div class="step"><i>3</i><div><h4>独立检查数据</h4><p>另开终端运行标准库测试。包含福州快照重建的比对。可选浏览器测试另外需要 Playwright 和 Microsoft Edge。</p></div></div><span class="code">python tests/test_data.py</span></div>
+<div><div class="rule"><h3>代码、模型和外部服务</h3><p>运行核心功能无需 API 密钥、环境变量或远程模型。推荐计算、数据转换与边界判断可在源码查看。打开原视频或街道底图需要网络。</p></div><div class="rule"><h3>视频与地理数据的归属</h3><p>探店视频属于原作者，工具提供出处和必要的地点事实。武汉河流来自 Natural Earth（公共领域）；福州水系来自 Geofabrik 的 OSM 数据，遵循 ODbL。Leaflet 随附 BSD 许可证。</p><p class="tiny space"><a class="cite" href="https://www.openstreetmap.org/copyright">OpenStreetMap 署名与许可</a>　<a class="cite" href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth 使用条款</a></p></div>
+<div class="inset space"><h4>评审复现入口</h4><p class="sm" id="repo-link">作品源码根目录 README.md。数据来源和逐点依据位于 docs/，本机安装、启动与复核命令可直接使用。</p></div></div></div>
+<div class="foot"><span><a class="cite" href="https://www.boxuegu.com/matchTrack/detail/?id=10039">第九届传智杯 · AI创新应用挑战赛</a>　／　美食UP主的榜单推荐</span><span>11</span></div></section>
+</body></html>
