@@ -179,4 +179,4 @@ if __name__ == "__main__":
         add_reviewed_coordinates(evidence, json.loads(coordinate_file.read_text(encoding="utf-8-sig")))
     add_reviewed_mentions(evidence, json.loads(args.mentions.read_text(encoding="utf-8-sig")))
     output = build(evidence)
-    args.out.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    args.out.write_bytes((json.dumps(output, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))

@@ -72,8 +72,7 @@ class SnapshotTests(unittest.TestCase):
             subprocess.run([sys.executable, str(ROOT / "scripts/import_fuzhou.py"),
                             str(ROOT / "docs/fuzhou-reviewed.json"), "--out", str(output)],
                            check=True, cwd=staging)
-            rebuilt = json.loads(output.read_text(encoding="utf-8"))
-        self.assertEqual(rebuilt, load("data/fuzhou.json"))
+            self.assertEqual(output.read_bytes(), (ROOT / "data/fuzhou.json").read_bytes())
 
     def test_fuzhou_keeps_historical_closures_in_the_catalog(self):
         data = load("data/fuzhou.json")
